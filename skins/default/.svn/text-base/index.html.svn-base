@@ -1,0 +1,201 @@
+{%extends file="./main_layout.html"%} 
+{%block name="title" append%}
+免费专业智能会议管理工具 
+{%/block%}
+
+{%block name="header-css"%}
+<link rel="shortcut icon" href="{%$SP_URL_IMG%}favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{%$SP_URL_STO%}css/common.css">
+<link rel="stylesheet" href="{%$SP_URL_STO%}css/main.css">
+<link rel="stylesheet" href="{%$SP_URL_STO%}css/animate.min.css">
+<link rel="stylesheet" href="{%$SP_URL_STO%}css/notify.css">
+<link rel="stylesheet" href="{%$SP_URL_STO%}css/backcommon.css">
+<link rel="stylesheet" href="{%$SP_URL_STO%}css/jquery.jslides.css">
+<link rel="stylesheet" href="{%$SP_URL_STO%}vendor/swiper/css/swiper.min.css">
+{%/block%}
+{%block name="header-script" %}
+ <script src="{%$SP_URL_STO%}vendor/require/require.js" data-main="{%$SP_URL_STO%}main.js"></script>
+ <script src="{%$SP_URL_STO%}js/jquery.min.js"></script>
+ <script src="{%$SP_URL_STO%}js/jquery.jslides.js"></script>
+{%/block%}
+
+
+{%block name="page-content" %}
+
+<!--	<div class="slider">
+
+        <div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="{%$SP_URL_STO%}/picture/s1.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="{%$SP_URL_STO%}/picture/s2.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="{%$SP_URL_STO%}/picture/s3.jpg" alt=""></div>
+    </div>
+    <div class="swiper-pagination"></div>
+
+</div>
+ </div> -->
+
+<div id="full-screen-slider">
+	<ul id="slides">
+		<li style="background:url({%$SP_URL_STO%}img/banner01.jpg) no-repeat center top"></li>
+		<li style="background:url({%$SP_URL_STO%}img/banner02.jpg) no-repeat center top"></li>
+	</ul>
+</div>
+
+
+
+
+
+<!--找回密码-->
+         <div class="border-style  center zoomInUp animated" id="findPwd" ms-visible="findPwdShow" style="display: none;">
+        <div class="title"><img src="{%$SP_URL_STO%}img/findpwd_tit.jpg" alt=""></div>
+                <button class="close" ms-click="close" >X</button>
+
+        <ul class="tabs"><li  class="on" ><a href="#"ms-click="toggle(0)">手机找回</a></li>
+            <li><a href="#" ms-click="toggle(1)">邮箱找回</a></li>
+        </ul>
+        <div class="tab-content">
+      <div class="contents"  ms-visible="currentIndex === 0" >
+
+         <div class="form" id="FindpwdbyMobile"  ms-controller="FindpwdbyMobile">
+         	 <div class="error-tip" >{{errorTxt}}</div>
+            <form action="" ms-widget="validation"  novalidate="novalidate">
+                <div class="form-group ">
+                    <input class="form-control " type="text" placeholder="手机号" ms-duplex-required="username"  data-duplex-event="change" />
+                </div>
+                <div class="form-group ">
+                   <div class="width-70"> <input class="form-control code"  type="text" placeholder="短信验证码" ms-duplex-required="code"  data-duplex-event="change" /></div>  
+
+                       <div class="width-30"> <a class="btn success pull-right" ms-click="getCode">获取</a></div>  
+
+                </div>
+              
+                <div class="form-group ">
+                    <button class="btn success pull-center">找回</button>
+                </div>
+            </form>
+        </div>
+          
+      </div>
+        
+
+      <div class="contents"  ms-visible="currentIndex === 1" >
+
+           <div class="form"    id="FindpwdbyEmail" ms-controller="FindpwdbyEmail">
+           	<div class="error-tip" >{{errorTxt}}</div>
+            <form action=""  ms-widget="validation"  novalidate="novalidate">
+                <div class="form-group " >
+                    <input class="form-control " type="text" placeholder="邮箱" ms-duplex-required="username"  data-duplex-event="change" />
+                </div>
+                <div class="form-group ">
+                   <div class="width-70"> <input class="form-control code"  type="text" ms-duplex-required="code"  data-duplex-event="change" placeholder="邮箱验证码" /></div>  
+
+                       <div class="width-30">  <a class="btn success pull-right" ms-click="getCode" >获取</a></div>  
+
+                </div>
+              
+                <div class="form-group ">
+                    <button class="btn success pull-center">找回</button>
+                </div>
+            </form>
+        </div>
+   
+        </div>         
+
+        </div>
+     
+    </div> 
+<!--找回密码-->
+
+
+
+
+
+
+
+
+
+
+
+    <!--登录-->
+    <div class="border-style center zoomInUp animated" id="loginArea" ms-visible="loginIsShow" ms-controller="login" style="display: none;">
+        <div class="title"><img src="{%$SP_URL_STO%}img/login_tit.jpg" alt=""></div>
+        <div class="error-tip" >{{errorTxt}}</div>
+        <button class="close" ms-click="close">X</button>
+        <div class="form" >
+            <form action=""  ms-widget="validation"  novalidate="novalidate">
+                <div class="form-group ">
+                    <input class="form-control " type="text" placeholder="ID/手机/邮箱" ms-duplex-required="username"  data-duplex-event="change"/>
+                </div>
+                <div class="form-group ">
+                    <input class="form-control " type="password" placeholder="密码" ms-duplex-required="password" data-duplex-event="change" />
+                </div>
+               <!--  <div class="form-group ht-checkbox-box ">
+                    <input type="checkbox" ms-duplex-checked="autologin" >
+                    <label class="ht-input-text1">记住账号</label>
+                    
+                </div> -->
+                <div class="form-group ">
+                    <button class="btn ht-btn-blue pull-center">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+                </div>
+                <div class="login-bottom"><a href="#"  ms-click="showreg" >注册账号</a> | <a href="#" ms-click="showPwd" >找回密码</a></div>
+            </form>
+        </div>
+    </div>
+    <!--登录end-->
+
+
+
+    <!--注册-->
+        <div class="border-style center zoomInUp animated" id="regArea" ms-visible="regIsShow"  style="display: none;">
+        <div class="title"><img src="{%$SP_URL_STO%}img/reg_tit.jpg" alt=""></div>
+        
+        <button class="close" ms-click="close">X</button>
+
+        <div class="form" ms-controller="reg">
+        	 <div class="error-tip" >{{errorTxt}}</div>
+            <form action="" ms-widget="validation"  novalidate="novalidate">
+                <div class="form-group ">
+                    <input class="form-control " type="text" placeholder="手机"  ms-duplex-required="mobile" ms-duplex-phone="mobile" data-duplex-event="change" required/>
+                    <div class="error-tip"></div>
+                </div>
+                <div class="form-group ">
+                    <input class="form-control " type="text" placeholder="邮箱" ms-duplex-required="email"  ms-duplex-email="email" data-duplex-event="change" />
+                      <div class="error-tip"></div>
+                </div>
+                <div class="form-group ">
+                    <input class="form-control " id="password" type="password" ms-duplex-required="passwd" placeholder="密码"   ms-duplex-alpha_passwd="passwd"   data-duplex-event="change"/>
+                      <div class="error-tip"></div>
+                </div>
+                   <div class="form-group ">
+                <input class="form-control " id="confirm_passwd" type="password"  placeholder="确认密码"  ms-duplex-repeat="confirm_passwd" data-duplex-repeat="password" data-duplex-event="change" />
+                  <div class="error-tip"></div>
+                </div>
+                  <div class="form-group ">
+                    <input class="form-control code"  type="text" placeholder="验证码"  maxlength="6" minlength="4"  ms-duplex-required="captcha" /> 
+                    <img src="/user/captcha.html?t=234" ms-click="changCaptcha">
+                      <div class="error-tip"></div>
+                </div>
+
+
+                <div class="form-group ">
+                    <button  class="btn ht-btn-blue pull-center" ms-click="onValidateAll" >注册</button>
+                </div>
+            </form>
+        </div>
+    </div>
+	 <div class="border-style center zoomInUp animated" id="regSuccess" ms-visible="regSuccess"  style="display: none;">
+	 	<button class="close" ms-click="close">X</button>
+	    <div class="layer-success">
+	        <span>&nbsp;</span>
+	        <p>注册成功，马上体验</p>
+	        <a class="ht-btn-blue" href="/active/index.html">进入会通</a>
+	    </div>
+    </div>
+    <div class="layer-bg" style="display: none;" ></div> 
+    
+    
+{%/block%}
+
+{%block name="footer-script"%}
+{%/block%}

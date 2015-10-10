@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>电子票  - 会通</title>
+<link href="{%$SP_URL_CSS%}ticket.css" rel="stylesheet"/>
+</head>
+
+<body class="ticket-bg">
+  <div class="ticket-main">
+  <div class="ticket-t"></div>
+     <div class="ticket-b"></div>
+     <div class="ticket-tit">电子票</div>
+     <div class="ticket-content">
+     
+     
+     <h2>{%$active.title%}</h2>
+     <div class="line"></div>
+     <p class="ticket-date">{%$active.activit_start|date_format:"%Y-%m-%d %H:%S"%} ～ {%$active.activit_end|date_format:"%Y-%m-%d %H:%S"%}</p>
+     <p class="ticket-home">{%$active.address%}</p>
+     <h4 class="ticket-name">参会人  {%$data.name%}</h4>
+     <div class="ticket-code"><img src="/attendee/code/{%$data.signId%}.html?type=code" alt=""></div>	
+     <p class="ticket-num">{%$data.sn%}</p>
+     <p class="line"></p>
+     </div>			
+  </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{%extends file="layout.html"%} 
+{%block name="title" append%}
+邀请函创建完成
+{%/block%}
+
+{%block name="header-css"%}
+	<link href="{%$SP_URL_CSS%}backcommon.css" rel="stylesheet"/>
+	<link href="{%$SP_URL_CSS%}activity-create.css" rel="stylesheet"/>
+{%/block%}
+ 
+{%block name="header-script" %}
+	<script type="text/javascript" src="{%$SP_URL_JS%}ytab.js"></script>
+{%/block%}
+
+{%block name="page-header"%}
+
+{%/block%}
+
+{%block name="page-content" %}
+<div class="row" style="margin-left: 0px;margin-right: 0px;">
+			<div style="height: 50px;font-size:14px;line-height: 50px;">
+				<div style="margin-left:30px;width:500px;">
+					<a href="/active/index.html">我的活动</a>  >  <a href="/active/lettereditor.html?id={%$letter.id%}"> {%$letter.title%} </a>  > 创建成功
+				</div>
+			</div>
+			<div class="ht-left ht-user-active-option-l" style="height:560px;margin-bottom: 20px!important;">
+				<div class="ht-create-option-margin">
+					<div class="title">
+						邀请函创建完成
+					</div>
+					<div style="line-height: 36px;">
+							嗨，你还有其它需要吗？<br/>
+						
+							1、您觉得一份邀请函不够？点击活动邀请函，为此活动创建更多精美的邀请函吧！<br/>
+							
+							2、已有参会人名单？快点击活动参会人，导入名单
+					</div>
+					<div  style="margin-top: 50px;">
+							<a href="/active/index.html" class="btn btn-default  ht-create-btn-170 ht-left ht-create-bth-color1" >
+								我的活动
+							</a>
+							<a href="/attendee/index.html?activeId={%$letter.active_id%}" class="btn btn-default  ht-create-btn-170 ht-left ht-create-bth-color2" style="margin-left: 16px;">
+								参会人名单
+							</a>
+							<a href="/letter/index.html?id={%$letter.active_id%}" class="btn btn-default  ht-create-btn-170 ht-left ht-create-bth-color3 " style="margin-left: 16px;">
+								活动邀请函
+							</a>
+					</div>
+					
+				</div>
+				<div style="clear: both"></div>
+			</div>
+			<!-- <div class="ui vertical divider">
+			Or
+			</div> -->
+			<div class="ht-right ht-user-active-option-r" >
+				<div  class="ht-create-option-margin" style="text-align: center;">
+					<div class="title">
+						邀请函二维码
+					</div>
+					<div style="padding-bottom:35px;padding-top: 35px;border-bottom: 1px dashed #E5E5E5;">
+						<img style="border:1px solid #CCC;border-radius: 10px;" width="200" height="200" src="/letter/rcode.html?id={%$letter.id%}" />
+					</div>
+				
+					<p style="padding-bottom:24px;padding-top: 24px;border-bottom: 1px dashed #E5E5E5;">
+                       微信 扫一扫<BR>
+						嗨，一份精美的邀请函已经完成了，快拿起手机，使用微信扫描上面的二维码，分享给您的朋友吧！
+					</p>
+				</div>
+			</div>
+</div>
+{%/block%}
+
+
+{%block name="footer-script"%}
+
+{%/block%}

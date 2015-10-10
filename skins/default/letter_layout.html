@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block name="title"%}{%/block%} - 会通</title>
+    <link rel="shortcut icon" href="{%$SP_URL_IMG%}favicon.ico" type="image/x-icon" />
+	<link href="{%$SP_URL_CSS%}bootstrap.min.css" rel="stylesheet"/>
+	<link href="{%$SP_URL_CSS%}font-awesome.min.css" rel="stylesheet"/>
+	<link href="{%$SP_URL_CSS%}backcommon.css" rel="stylesheet"/>
+	<link href="{%$SP_URL_CSS%}letter.css" rel="stylesheet"/>
+	<!--[if lt IE 7]>
+	<link rel="stylesheet" type="text/css" href="{%$SP_URL_CSS%}bootstrap-ie6.css?1">
+	<![endif]-->
+	<!--Basic Styles-->
+    {%block name="header-css"%} {%/block%}
+    <script type="text/javascript">
+    var SP_URL_STO = '{%$SP_URL_STO%}';
+    </script>
+    <script type="text/javascript" src="{%$SP_URL_STO%}vendor/jquery/jquery-1.9.1.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+ 	<!--[if lt IE 9]>
+ 	 <script type="text/javascript" src="{%$SP_URL_JS%}html5shiv.min.js"></script>
+ 	  <script type="text/javascript" src="{%$SP_URL_JS%}respond.min.js"></script>	
+ 	<![endif]-->
+ 	<!--[if lt IE 8]>
+ 		<link href="{%$SP_URL_CSS%}font-awesome-ie7.min.css" rel="stylesheet"/>
+ 	<![endif]-->	
+    {%block name="header-script"%}{%/block%}
+</head>
+
+<body >
+{%include file="tpl_header.html"%}
+   	
+{%block name="page-header"%}{%/block%}
+   	
+<div class="ht-maincontainer ht-wrapper-1200">
+	<div class="/*row*/ ">
+		<!--start 面包屑  -->
+		<div class="ht-lettr-crumb">
+			<div class="ht-lettr-crumb-title">
+				{%block name="page-crumb"%}{%/block%}
+			</div>
+		</div>
+		<!--end 面包屑  -->
+		
+		<div class="ht-lettr-header">
+			<!--start 左边部分 -->
+			<div class="ht-lettr-header-left">
+				<img {%if !empty($active.thumbnail)%}src="{%$SP_URL_UPLOAD%}{%$active.thumbnail%}"{%else%}src="{%$SP_URL_IMG%}nopic.jpg"{%/if%} height="100%" width="100%" />
+			</div>
+			<!--end 左边部分 -->
+			
+			<!--start 中间部分 -->
+			<div class="ht-lettr-header-center" >
+					<div class="ht-letter-header-center-title">
+						<a href="/active/edit.html?id={%$active.id%}">
+							<span class="ht-left"><i class="ht-auth"></i> {%$active.title%} &nbsp;<i class="fa fa-edit" style="font-size:18px!important;"></i></span>
+							
+						</a>
+						
+					</div>
+					
+					<p>
+						活动日期：{%$active.activit_start|date_format:"%Y.%m.%d"%} ~ {%$active.activit_end|date_format:"%Y.%m.%d"%}
+					</p>
+					{%if $active.is_enroll == 1%}
+					<p>
+						报名日期：{%$active.enroll_start|date_format:"%Y.%m.%d"%} ~ {%$active.enroll_end|date_format:"%Y.%m.%d"%}
+					</p>
+					{%/if%}
+					<p class="address">
+						活动地点：{%$active.address%}
+					</p>
+			</div>
+			<!--end 中间部分 -->
+			
+			<!--start 右边部分 -->
+			<div class="ht-lettr-header-right">
+				<div class="ht-letter-right-main">
+					<div class="ht-left">
+						<img   src="{%$SP_URL_IMG%}ioswx.png" />
+					</div>
+					<div class="ht-left ht-letter-right-wx">
+						免费签到工具<br/>
+					
+						扫描下载(仅支持iOS) 
+					</div>
+					<div class="ht-clear"></div>
+				</div>
+			</div>
+			<!--end 右边部分 -->
+			
+		
+			<div class="ht-clear"></div>
+		</div>
+		
+		<!--start 页面列表主体 -->
+		<div class="/*row*/ ht-lettr-main">
+			<div style="float:left;">
+				<div class="ht-main-left-list">
+					<a href="/letter/index.html?id={%$active.id%}" ><i class="ht-auth {%if !empty($select) &&  $select == 'letter'%}ht-auth-ok{%/if%}"></i>邀请函</a>
+					<a href="/attendee/index.html?activeId={%$active.id%}" ><i class="ht-auth {%if empty($select) ||  $select == 'attendee'%}ht-auth-ok{%/if%}"></i>参会人</a>
+				</div>
+				<div class="ht-clear"></div>
+			</div>
+			<div class="ht-letter-main-right">
+				{%block name="page-content"%}{%/block%}
+			</div>
+		</div>
+		<!--end 页面列表主体-->
+		<div class="ht-clear"></div>
+	</div>
+</div><div style="height:100px;"></div>
+{%block name="footer-script"%}{%/block%}
+{%include file="tpl_footer.html"%}
+</body>
+</html>

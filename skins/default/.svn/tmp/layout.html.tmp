@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{%block name="title"%}{%/block%}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<<<<<<< .mine
+    <link rel="stylesheet" href="{%$SP_URL_STO%}css/common.css">
+=======
+    <link rel="shortcut icon" href="{%$SP_URL_IMG%}favicon.ico" type="image/x-icon" />
+>>>>>>> .r143
+    <!--Basic Styles-->
+    {%block name="header-css"%} {%/block%}
+    <script type="text/javascript">
+    var SP_URL_STO = '{%$SP_URL_STO%}';
+    </script>
+    <script src="{%$SP_URL_STO%}vendor/require/require.js"></script>
+    {%block name="header-script"%}{%/block%}
+</head>
+
+<body ms-controller="root">
+    {%include file="tpl_header.html"%}
+   	
+   	{%block name="page-header"%}{%/block%}
+   	
+    <div class="ht-maincontainer ht-wrapper-1200">
+        {%block name="page-content"%}{%/block%}
+    </div>
+    {%block name="footer-script"%}{%/block%}
+</body>
+
+</html>

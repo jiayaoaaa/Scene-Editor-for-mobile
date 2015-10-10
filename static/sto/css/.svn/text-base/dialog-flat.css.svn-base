@@ -1,0 +1,145 @@
+/**
+ * dialog css
+ * @author yu
+ */
+.y-dialog a {text-decoration:none;}
+.y-dialog-btn {
+	display:inline-black;
+	padding:12px 20px;
+	text-align:center;
+	vertical-align:middle;
+	background-color:#666666;
+	color:#fff;
+	border:0;
+	border-radius:6px;
+	cursor:pointer;
+}
+.y-dialog-btn-primary {
+	background-color:#0099cc;
+}
+.y-dialog-innerwrapper {
+	margin:0 20px 0 20px;
+}
+.y-dialog-btn:hover {
+	opacity:.8;
+}
+.y-dialog-close {
+	position:absolute;
+	z-index:1227;
+	top:-10px;
+	right:-10px;
+	display:inline-block;
+	width:20px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	color:#111;
+	font-size:14px;
+	border:1px solid #CCC;
+	background-color:#fff;
+	border-radius:50%;
+	
+	/*-webkit-transition: all .5s ease-out;*/
+}
+.y-dialog-close:hover {
+	/*-webkit-transform: rotate(360deg)*/
+}
+
+.y-dialog {
+	position:absolute;
+	z-index:1127;
+	/*min-width:320px;
+	max-width:460px;*/
+	width:460px;
+	background-color: #fff;
+	border: 1px solid #999;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 6px;
+	-webkit-box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+	box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	outline: 0;
+}
+.y-dialog-header {
+	height:60px;
+	line-height:60px;
+	overflow:hidden;
+	font-size:20px;
+	border-bottom:1px solid #ccc;
+	
+	-moz-user-select: none;
+	-o-user-select:none;
+	-khtml-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}
+.y-dialog-content {
+	padding:20px 0 20px 0;
+	line-height:26px;
+	font-size:14px;	
+}
+.y-dialog-footer {
+	font-size:14px;
+	background-color:#f2f2f2;
+	padding:8px 12px 8px 12px; 
+	text-align:right;
+	border-top:1px solid #ccc;
+	border-radius:0 0 6px 6px;
+}
+.y-dialog-footer .btn{
+	padding:6px 25px;
+}
+/* file */
+.progressWrapper {
+	height:32px;
+	line-height:32px;
+	border:1px solid #eee;
+}
+.progressContainer {
+	position:relative;
+	background-color:#FFF;
+}
+.progressContainer .progressName {
+	float:left;
+	padding-left:12px;
+}
+.progressContainer .progressBarStatus {
+	float:left;
+	padding-left:20px;
+}
+/* 取消按钮 */
+.progressContainer a.progressCancel {
+	position:absolute;
+	top:10px;
+	right:6px;
+	display:inline-block;
+	height:10px;
+	width:10px;
+	font-size:0;
+	background:url(../img/recycle.png) no-repeat;
+}
+
+/* 进度 */
+.progressContainer .progressBarInProgress,
+	.progressBarComplete, .progressBarError  {
+	position:absolute;
+	z-index:1127;
+	top:0;
+	left:0;
+	height:32px;
+	width:1px;
+	background-color:#9BC95D;
+	opacity:.7;
+	filter:alpha(opacity=70);
+}
+.progressContainer .progressBarInProgress {
+	border-right: 2px solid #36824B; 
+}
+.progressContainer .progressBarComplete {
+	background-color:#9BC95D; 
+}
+.progressContainer .progressBarError { 
+	background-color:red; 
+}

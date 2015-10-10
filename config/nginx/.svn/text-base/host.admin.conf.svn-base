@@ -1,0 +1,146 @@
+server {
+        listen          80;
+        server_name     api.huitong.cc;
+        root   /sproot/web/api;
+        access_log  /sproot/logs/api_access.log combined buffer=4k;
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Headers X-Requested-With;
+        add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
+
+        gzip on;
+        gzip_http_version 1.0;
+        gzip_disable "MSIE [1-6].";
+        gzip_types text/plain application/x-javascript text/css text/javascript;
+        location / {
+                expires   10m;
+        }
+        location ~.*\.(js|css)?$
+        {
+          expires 1h;
+        }
+        location ~ \.php$ {
+                fastcgi_pass   127.0.0.1:9000;
+                fastcgi_index  index.php;
+                fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+                include        fastcgi_params;
+        }
+
+        #url–ﬁ Œ
+	
+        rewrite ^/([a-z][a-zA-Z0-9]+)/([a-zA-Z0-9]+)\.(json) /$1/$2.php last;
+        error_page 500 http://www.huitong.cc/home/error500.html;
+        error_page 404 http://www.huitong.cc/home/error.html;
+	error_page 403 http://www.huitong.cc/home/error.html;
+}
+
+server {
+        listen          80;
+        server_name     m.huitong.cc;
+        root   /sproot/static/sto;
+        access_log  /sproot/logs/m_access.log combined buffer=4k;
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Headers X-Requested-With;
+        add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
+
+        gzip on;
+        gzip_http_version 1.0;
+        gzip_disable "MSIE [1-6].";
+        gzip_types text/plain application/x-javascript text/css text/javascript;
+        #location / {
+        #        expires   10m;
+        #}
+        #location ~.*\.(js|css)?$
+        #{
+        #  expires 1h;
+        #}
+        location ~ \.php$ {
+                fastcgi_pass   127.0.0.1:9000;
+                fastcgi_index  index.php;
+                fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+                include        fastcgi_params;
+        }
+
+        #url–ﬁ Œ
+        rewrite "([a-zA-Z0-9_\-\.\/]+)_v\d+\.(js|css|gif|jpg|png)$" $1.$2 last;
+        error_page 500 http://www.huitong.cc/home/error500.html;
+        error_page 404 http://www.huitong.cc/home/error.html;
+	error_page 403 http://www.huitong.cc/home/error.html;
+}
+
+server {
+        listen          80;
+        server_name     file.huitong.cc;
+        root   /sproot/web/uploads;
+        access_log  /sproot/logs/file_access.log combined buffer=4k;
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Headers X-Requested-With;
+        add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
+
+        gzip on;
+        gzip_http_version 1.0;
+        gzip_disable "MSIE [1-6].";
+        gzip_types text/plain application/x-javascript text/css text/javascript;
+        #location / {
+        #        expires   10m;
+        #}
+ 
+        location ~ \.php$ {
+                fastcgi_pass   127.0.0.1:9000;
+                fastcgi_index  index.php;
+                fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+                include        fastcgi_params;
+        }
+
+        #url–ﬁ Œ
+        error_page 500 http://www.huitong.cc/home/error500.html;
+        error_page 404 http://www.huitong.cc/home/error.html;
+	error_page 403 http://www.huitong.cc/home/error.html;
+}
+
+
+server {
+        listen          80;
+        server_name     www.huitong.cc;
+        root   /sproot/web/www;
+        access_log  /sproot/logs/www_access.log combined buffer=4k;
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Headers X-Requested-With;
+        add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
+        index index.php index.html;
+
+	client_max_body_size 5m;
+
+        gzip on;
+        gzip_http_version 1.0;
+        gzip_disable "MSIE [1-6].";
+        gzip_types text/plain application/x-javascript text/css text/javascript;
+         location / {
+                expires   10m;
+                try_files $uri $uri/ /index.php?$args;
+        }
+	
+	location ~.*\.(js|css|png|jpg|gif|eot|svg|ttf|woff|woff2|tpl)?$
+        {
+	  proxy_pass http://m.huitong.cc;
+         # expires 1h;
+        }
+        location ~ \.php$ {
+                fastcgi_pass   127.0.0.1:9000;
+                fastcgi_index  index.php;
+                fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+                include        fastcgi_params;
+        }
+
+        #url–ﬁ Œ
+        rewrite ^/user/captcha\.png  /index.php?_mod=user/captcha&format=html last;
+        rewrite ^/([a-zA-Z0-9]+)\.(json|html|xml)(\?(.+))? /$1.php?format=$2$4 last;
+	rewrite ^/attendee/code/([a-zA-Z0-9]+)\.(html) /index.php?&_mod=attendee/code&format=html&id=$1 last;
+	rewrite ^/letter/show/([a-zA-Z0-9]+)\.html? /index.php?&_mod=letter/show&format=html&id=$1 last;
+        rewrite ^/([a-z][a-zA-Z0-9]+)/([a-zA-Z0-9]+)\.(json|html|xml)(\?(.+))? /index.php?_mod=$1/$2&format=$3$5 last;
+	rewrite ^/([a-z][a-zA-Z0-9]+)/([a-zA-Z0-9]+)/([a-zA-Z0-9]+)\.(json|html|xml)(\?(.+))? /index.php?_mod=$1/$2/$3&format=$4$6 last;
+        error_page 500 http://www.huitong.cc/home/error500.html;
+        error_page 404 http://www.huitong.cc/home/error.html;
+	error_page 403 http://www.huitong.cc/home/error.html;
+}
+
+

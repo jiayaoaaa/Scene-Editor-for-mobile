@@ -1,0 +1,58 @@
+
+.attendee_box{padding:25px;height:100%;}
+.attendee_header{height:35px;}
+.attendee_header p{float:left;cursor:pointer;margin-right:16px;}
+.attendee_header .ht-btn-blue, .attendee_header .ht-btn-green{
+	font-size: 14px;
+	padding:6px 25px;
+}
+.btn-green{height:33px;line-height:33px;text-align:center;color:#fff;margin:0px;padding:0px;background:none;border:none;}
+
+.btn-green .btn-left{padding:0px 10px 0px 9px;background:url(../img/attendee_button_green.png) no-repeat;}
+.btn-green .btn-mid{padding:0px 25px;background:url(../img/attendee_button_green_mid.png) repeat-x;}
+.btn-green .btn-right{padding:0px 10px 0px 9px;background:url(../img/attendee_button_right.png) no-repeat;}
+
+.btn-blue span.btn-left{padding:0px 10px 0px 9px;background:url(../img/attendee_button_green.png) no-repeat;}
+.btn-blue span.btn-mid{padding:0px 25px;background:url(../img/attendee_button_green_mid.png) repeat-x;}
+.btn-blue span.btn-right{padding:0px 10px 0px 9px;background:url(../img/attendee_button_right.png) no-repeat;}
+
+.attendee_content{padding-top:19px;}
+/*.attendee_content table tr{cursor: pointer;}*/
+.attendee_content table tr th{background:#7d7d7d;color:#fff;}
+.attend-model-header{width:415px;height:70px; margin:0px auto;border-bottom:#e6e6e6 1px solid;}
+.attend-model-header-title{font-size:18px;width:200px;color:#898989;margin:38px auto 0px auto;padding-left:40px;height:27px;line-height:27px;background:url(../img/attendee_set.png) left center no-repeat;}
+.attend-model-content{width:344px;margin:0px auto;}
+.attend-model-footer{width:410px;margin:32px auto 0px auto;overflow:hidden;padding-bottom:55px;text-align: center;}
+.clear{font-size:0px;clear:both;height:0px;line-height:0px;overflow:hidden;}
+
+.table-set-content{width:419px;}
+.table-set-content p{line-height:30px;color:#acacac;}
+.table-set{width:203px;*width:183px;height:30px;border:#bdbdbd 1px solid; float:left;margin-top:14px;border-radius:5px;padding:0px 10px;cursor: pointer;}
+.left{float:left}
+.right{float:right}
+.icon-check{padding-left:20px;height:30px;background:url(../img/attendee_right_checked.png) left center no-repeat;}
+.icon-check.check-off{background:url(../img/attendee_right_unchecked.png) left center no-repeat;}
+.error-tip {color: #f00;padding: 3px;clear: both;text-align: left;}
+.attend-model-content iframe{width:100%;height:90px;border:none;margin-top:17px;}
+
+.ht-create-btn-80{width: 80px;}
+.ht-create-bth-color2{
+	background-color:#11c3ee!important;
+	color:#ffffff!important;
+	font-size:16px;
+}
+.Bars { position: relative; width:310px;*+width:270px;border: 1px solid #B1D632; padding: 1px;margin-top:5px; } 
+.Bars div { 
+	 display: block; position: relative;
+	 background:#090;	/* 进度条背景颜色 */ 
+	 color: #333333;
+	 height: 20px; /* 高度 */ 
+	 line-height: 20px;
+	  /* 必须和高度一致，文本才能垂直居中 */ 
+ } 
+.Bars div span { position: absolute; width:310px;*+width:270px;
+ /* 宽度 */ text-align: center; font-weight: bold; } 
+
+.bthStyle {
+	font-size:11px;padding-left: 6px;padding-right: 6px;
+}

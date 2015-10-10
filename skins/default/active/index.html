@@ -1,0 +1,155 @@
+{%extends file="../layout.html"%} 
+{%block name="title" append%}
+活动列表
+{%/block%}
+
+{%block name="header-css"%}
+<link href="{%$SP_URL_CSS%}activity.css" rel="stylesheet"/>
+{%/block%}
+{%block name="header-script" %}
+<script src="{%$SP_URL_STO%}js/loader.js"></script>
+<script src="{%$SP_URL_STO%}vendor/arttemplate/template-native.js"></script>
+{%/block%}
+
+{%block name="page-content" %}
+	<div class="/*col-md-3*/ ht-pull-left ht-maincontainer-left" style="position:relative;">
+		<div class="ht-maincontainer-left-user" >
+			<div class="ht-pull-left">
+				<img  {%if !empty($user.face)%}src="{%$SP_URL_UPLOAD%}{%$user['face']%}"{%else%}src="{%$SP_URL_IMG%}dzx.jpg"{%/if%} />
+			</div>
+			<div class="ht-pull-left ht-maincontainer-left-user-info">
+				<strong>{%$user['email']%}</strong>
+				<p>ID: {%$user['userid']%}</p>
+			</div><div class="ht-clearL"></div>
+			<div class="ht-main-left-list">
+				{%if $user['mobile_status'] neq '1' %}
+                       <a href="/account/phoneAuth.html" ><i class="ht-mob-not-icon"></i>{%$user['mobile']%}</a>
+                {%else%} 
+              		  <a href="javascript:;" ><i class="ht-mob-icon"></i>{%$user['mobile']%}</a>               
+                {%/if%}
+				{%if $user['email_status'] neq '1' %}
+                       <a href="/account/emailAuth.html" ><i class="ht-mail-not-icon"></i>{%$user['email']%}</a>             
+                {%else%}      
+               			 <a href="javascript:;" ><i class="ht-mail-icon"></i>{%$user['email']%}</a>          
+                {%/if%}
+				
+			</div>
+		</div>
+		<a class="ht-user-edit" href="/account/index.html"><i class="fa fa-edit" style="font-size: 24px!important;"></i></a>
+	</div>
+	<div class="/*col-md-9*/ ht-ignore-padding ht-maincontainer-right ">
+		<div class="ht-tab-list" >
+            <div class="creation-activity">在这里，添加新活动</div>
+			<a title="创建活动" href="/active/create.html"><i class="fa fa-plus ht-tab-create-btn"></i></a>
+			<span id="httab">
+			<a id="all" href="javascript:;" class="ht-tab ht-tab-on"><i>全部项目</i></a><!--
+            --><a id="ing" href="javascript:;" class="ht-tab"><i>进行中</i></a><!--
+            --><a id="end" href="javascript:;" class="ht-tab"><i>已结束</i></a>
+			</span>
+			<div class="ht-clear"></div>
+		</div>
+		
+		<div id="createButton" style="display:none;">
+			<div class="ht-createActivity">
+				<div class="ht-createActivity-btn-wrapper">
+					<i class="ht-createActivity-btn-icon"></i>
+					<p>创建一个活动</p>
+					<a href="/active/create.html" class="ht-createActivity-btn">创建活动</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 列表 -->
+		<div id="itemlist" class="ht-activity-list"></div>
+		<div class="ht-clearL"></div>
+		<div id="pagestring" ></div><div class="ht-clear"></div>
+	</div>
+	
+	<div class="ht-clear"></div>
+
+
+
+<script id="listtemplate" type="text/html">
+<% if (data){ %>
+<% for(var i=0,len=data.length; i<len; i++) { %>
+<div class="ht-activity-item ">
+<!-- 子菜单 -->
+	<span class="ht-submenu">
+		<b class="ht-submenu-settingbtn"></b>
+		<div class="ht-submenu-item">
+			<a href="/active/edit.html?id=<%=data[i].id %>" class="line">
+				<i class="ht-subMenu-icon01"></i>
+				<span>编&nbsp;&nbsp;&nbsp;辑</span>
+			</a>
+			<% if(isGonging(nowtime, data[i].activit_start, data[i].activit_end)){ %>
+			<!--
+			<a href="javascript:;" class="line">
+				<i class="ht-subMenu-icon01"></i>
+				<span>编&nbsp;&nbsp;&nbsp;辑</span>
+			</a>
+			<a href="" class="line">
+				<i class="ht-subMenu-icon01"></i>
+				<span>统&nbsp;&nbsp;&nbsp;计</span>
+			</a>
+			<a href="javascript:;" class="line" onclick="shareActive('1', '<%=data[i].title %>')">
+				<i class="ht-subMenu-icon01"></i>
+				<span>分&nbsp;&nbsp;&nbsp;享</span>
+			</a>
+			-->
+			
+			<a href="/letter/index.html?id=<%=data[i].id %>" class="line">
+				<i class="ht-subMenu-icon02"></i>
+				<span>邀请函</span>
+			</a>
+			<% } %>
+			<a href="/attendee/index.html?activeId=<%=data[i].id %>" class="line">
+				<i class="ht-subMenu-icon03"></i>
+				<span>参会人</span>
+			</a>
+			<a href="javascript:;" onclick="delActive('<%=data[i].id %>')">
+				<i class="ht-subMenu-icon04"></i>
+				<span>删&nbsp;&nbsp;&nbsp;除</span>
+			</a>
+		</div>
+	</span>
+	<div class="ht-activity-item-img">
+		<a href="/letter/index.html?id=<%=data[i].id %>"><img class="lazy" data-original="{%$SP_URL_UPLOAD%}<%=data[i].thumbnail %>" onload="nopic(this)" /></a>
+	</div>
+	<div class="ht-activity-item-info">
+		<i class="ht-auth"></i>
+		<a class="ht-activity-tit" href="/letter/index.html?id=<%=data[i].id %>"><%=data[i].title %></a>
+		<% if(isGonging(nowtime, data[i].activit_start, data[i].activit_end)){ %>
+		<a href="javascript:;" class="ht-btn-blue ht-activity-item-info-btn">进行中</a>
+		<% } else { %>
+		<a href="javascript:;" class="ht-btn-blue ht-activity-item-info-btn disabled">已结束</a>
+		<% } %>
+	</div>
+	<div class="ht-activity-item-time">
+		<p>活动时间：
+			<%=dateFormat(data[i].activit_start * 1000, "yyyy.MM.dd hh:mm") %> - 
+			<%=dateFormat(data[i].activit_end * 1000, "yyyy.MM.dd hh:mm") %>
+		</p>
+		<% if(data[i].is_enroll == 1){ %>
+		<p>报名时间：
+			<%=dateFormat(data[i].enroll_start * 1000, "yyyy.MM.dd hh:mm") %> - 
+			<%=dateFormat(data[i].enroll_end * 1000, "yyyy.MM.dd hh:mm") %>
+		</p>
+		<% } %>
+	</div>
+	<div class="ht-activity-item-bottom">
+		<i class="ht-icon-address">地址</i>
+		<%=data[i].address %>
+	</div>
+</div>
+<% }} %>
+</script>
+{%/block%}
+{%block name="footer-script"%}
+<!-- 本页 js -->
+<script src="{%$SP_URL_STO%}js/jquery.lazyload.min.js"></script>
+<script src="{%$SP_URL_STO%}js/jquery.lazyload.min.js"></script>
+<script src="{%$SP_URL_STO%}js/ytab.js"></script>
+<script src="{%$SP_URL_STO%}js/SysUtil.js"></script>
+<script src="{%$SP_URL_STO%}modules/activity/ajaxload.js"></script>
+<script src="{%$SP_URL_STO%}modules/activity/index.js"></script>
+{%/block%}

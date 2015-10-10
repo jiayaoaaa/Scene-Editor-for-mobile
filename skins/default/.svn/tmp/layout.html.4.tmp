@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block name="title"%}{%/block%}</title>
+    <link rel="shortcut icon" href="{%$SP_URL_IMG%}favicon.ico" type="image/x-icon" />
+	<link href="{%$SP_URL_CSS%}bootstrap.min.css" rel="stylesheet"/>
+	<link href="{%$SP_URL_CSS%}backcommon.css" rel="stylesheet"/>
+	<!--[if lt IE 7]>
+	<link rel="stylesheet" type="text/css" href="{%$SP_URL_CSS%}bootstrap-ie6.css?1">
+	<![endif]-->
+	
+	<link rel="stylesheet" href="{%$SP_URL_CSS%}font-awesome.min.css">
+	<!--[if IE 7]>
+	<link rel="stylesheet" href="{%$SP_URL_CSS%}font-awesome-ie7.min.css">
+	<![endif]-->
+	
+	<!--Basic Styles-->
+    {%block name="header-css"%} {%/block%}
+    <script type="text/javascript">
+    var SP_URL_STO = '{%$SP_URL_STO%}';
+    </script>
+    <script type="text/javascript" src="{%$SP_URL_STO%}vendor/jquery/jquery-1.9.1.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+ 	<!--[if lt IE 9]>
+ 	 <script type="text/javascript" src="{%$SP_URL_JS%}html5shiv.min.js"></script>
+ 	  <script type="text/javascript" src="{%$SP_URL_JS%}respond.min.js"></script>	
+ 	<![endif]-->
+    {%block name="header-script"%}{%/block%}
+</head>
+
+<body oncontextmenu="return false">
+{%include file="tpl_header.html"%}
+   	
+{%block name="page-header"%}{%/block%}
+   	
+<div class="ht-maincontainer ht-wrapper-1200">
+	{%block name="page-content"%}{%/block%}
+</div>
+{%block name="footer-script"%}{%/block%}
+{%include file="tpl_footer.html"%}
+</body>
+</html>

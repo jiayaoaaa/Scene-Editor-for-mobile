@@ -1,0 +1,60 @@
+@charset "utf-8";
+/* CSS Document */
+
+.ht-404-box{
+	width:520px;
+	margin: 0 auto;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin:-170px 0 0 -260px;
+	text-align: center;
+	color:#999;
+}
+.ht-404-box>h3{
+	font-size:24px;
+	padding:20px;	
+}
+.ht-404-box>p{
+	font-size:12px;	
+	margin-bottom: 30px;
+}
+.ht-404-icon{
+	width:100%;
+	height: 189px;
+	background: url(../img/404.jpg) right no-repeat;
+}
+.ht-goHome{
+	display:inline-block;
+	padding:8px 30px;
+	background: #12aaeb;
+	color:#fff;
+}
+.hr-404-top{
+	height:30px;
+	padding:24px 30px;
+	border-bottom:1px solid #d4d8db;
+	position: absolute;
+	width:1200px;
+	left:50%;
+	margin-left:-600px;
+	top:0px;
+}
+.hr-404-top>a{
+	width: 325px;
+	height: 31px;
+	background:url(../img/logo.png);
+	display:inline-block;
+}
+.ht-user-footer{
+	position: absolute;
+	left:50%;
+	margin-left:-600px;
+	bottom:0px;
+}
+
+.ht-500-icon{
+	width:100%;
+	height: 190px;
+	background: url(../img/500.jpg) right no-repeat;
+}

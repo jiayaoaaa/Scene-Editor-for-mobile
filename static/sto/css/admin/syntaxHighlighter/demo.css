@@ -1,0 +1,56 @@
+.content{
+	margin: 0 auto;
+	padding: 0;
+	max-width: 1024px;
+	border-top:solid 1px #2B2B2B;
+}
+.content li{
+	list-style: none outside none;
+	margin-top: 5px;
+	display: block;
+}
+.title{
+	margin: 20px auto;
+	text-align: center;
+}
+
+.current{
+	width: 80px;
+	height: 20px;
+	background-color: #CCFFFF;
+	padding: 2px;
+}
+
+.leftMenu{
+	float: left;
+	border-right: solid 1px #2B2B2B;
+	padding-right: 5px;
+	min-height: 600px;
+	margin-right: 5px;
+}
+
+.demo{
+	margin: 10px 0 10px 130px;
+	padding:10px;
+	
+}
+.demo li{
+	margin: 20px;
+	
+}
+.demo a{
+	width:35px;
+	height:35px;
+	display:block;
+}
+
+.bg{
+  background-color: #E0E0E0;
+}
+
+.block-select{
+	width:37px;
+	height:37px;
+	display:block;
+	border: solid 1px ;
+}

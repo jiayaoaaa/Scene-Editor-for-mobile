@@ -1,0 +1,85 @@
+@charset "UTF-8";
+/* CSS Document */
+
+*{
+	margin: 0;
+	padding: 0;
+}
+img{border:0;}
+body{
+	font: normal 100%/1.5 Helvetica, Arial, sans-serif;
+}
+.ticket-bg{
+	background: #1e292b;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding:10% 7%;
+}
+.ticket-main{
+	width:100%;
+	height:100%;
+	background: #fff;
+	margin:0 auto;
+	text-align:center;
+	position: relative;
+	border-radius:20px;
+	color:#545454;
+}
+.ticket-t{
+	width:50px;
+	height:50px;
+	background: #1e292b;
+	border-radius:50px;
+	position: absolute;
+	top:-25px;
+	left:50%;
+	margin-left:-25px;
+}
+.ticket-b{
+	width:50px;
+	height:50px;
+	background: #1e292b;
+	border-radius:25px;
+	position: absolute;
+	bottom:-25px;
+	left:50%;
+	margin-left:-25px;
+}
+.ticket-tit{
+	position: absolute;
+	left:20px;
+	top:10px;
+	color:#545454;
+	font-size: 1em;
+	font-size:0.75em;
+}
+.ticket-main h2{
+	font-size: 1.2em;
+	line-height:1.3em;
+	text-align:center;
+	color:#2da4de;
+	padding:0px 15% 20px;
+}
+.ticket-main .line{
+	font-size:0;
+	line-height:0;
+	height:0;
+	clear:both;
+	border-bottom:1px  dashed #a0cfed;
+}
+.ticket-content{
+	position: absolute;
+	height:360px;
+	top:50%;
+	margin-top:-180px;
+	width:100%;
+	
+}
+.ticket-code img{padding:2px;border:1px solid #e3e4e8; display:block; margin:0 auto;width: 120px;height: 120px;}
+.ticket-date{ padding-top:30px;font-size:0.75em;}
+.ticket-name{font-size: 1.2em; padding:10px 0;color:#2da4de; font-weight:normal; }
+.ticket-home{font-size:0.75em; padding:0 10px;}
+.ticket-num{padding:10px 0 20px; font-size:0.75em;}

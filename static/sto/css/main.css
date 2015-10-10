@@ -1,0 +1,140 @@
+body{
+  font-size: 12px;
+  font-family:"Microsoft YaHei";
+}
+.ht-header{
+	border-bottom: 1px solid #ddd;
+}
+.header{
+	height: 47px;
+	overflow: hidden;
+	padding: 15px 30px;
+	border-bottom: 1px solid #ddd;
+}
+.header .logo{
+	float: left;
+}
+.header .menu{
+	float: right;
+	margin-top: 15px
+}
+.header .menu  a{
+
+	margin: 0  0 0 10px;
+	padding: 12px 35px;
+	letter-spacing: 4px
+}
+
+.btn,a.btn{
+	border-radius: 3px;
+	font-size: 16px;
+	background: #f4f4f4;
+	border: 1px ;
+	padding: 12px 20px;
+	color: #666;
+	cursor: pointer;
+}
+
+.btn.success,a.btn.success{
+	background: #10a64f;
+	color: #fff;
+  cursor: pointer;
+}
+
+
+
+.form input.form-control{
+	/*width: 290px;*/
+	width: 90%;
+}
+
+.error-tip{
+	color: #f00;
+	padding: 3px;
+  clear: both;
+}
+
+.slider .swiper-slide img{
+  width: 100%;
+  background: #000
+}
+#regArea .code{
+  width: 100px;
+  float: left;
+  margin-right: 15px
+}
+
+#findPwd .tabs{
+
+  margin-bottom: 15px;
+
+
+}
+#findPwd .tabs li{
+  font-size: 16px;
+}
+
+#findPwd .tabs li.on a{
+  color:#10a64f;
+  font-weight: bold;
+}
+
+#findPwd  .code{
+  width: 200px
+}
+#loginArea .btn, #regArea  .btn{
+	width:100%;
+}
+.ht-input-text1{
+	position: absolute;
+	color:#999;
+	font-weight:normal;
+	margin:1px 0 0 5px;
+}
+.ht-checkbox-box{
+	padding-left:14px;
+}
+.form .form-control {
+	border-radius:40px;
+	line-height: 34px;
+}
+.login-bottom{
+	text-align: center;
+	padding-top: 10px;
+	color:#999;
+}
+.login-bottom a{color:#999;}
+.layer-success{
+	overflow: hidden;
+	padding: 50px 0;
+	text-align: center;
+}
+.layer-success>span{
+	width:90px;
+	height:90px;
+	margin:0 auto;
+	display:block;
+	background: url(../img/right01.jpg) center no-repeat;;
+}
+.layer-success>p{
+	color:#666;
+	margin:20px auto 35px;
+}
+.layer-success>a{
+	display:inline-block;
+	line-height: 34px;
+	height:34px;
+	width:170px;
+}
+.ht-footer-box{
+/*	position: absolute;
+	bottom:0px;
+	left:0;
+	right:0;
+	z-index:5;*/
+	overflow: hidden;
+	background: #fff;
+}
+.ht-user-dropdown {
+	top:69px!important;
+}

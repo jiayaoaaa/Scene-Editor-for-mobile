@@ -1,0 +1,199 @@
+{%extends file="layout.html"%} 
+{%block name="title" append%}
+	{%if !empty($option)%}{%$active.title%}{%else%}创建活动{%/if%}
+{%/block%}
+
+{%block name="header-css"%}
+	<link href="{%$SP_URL_CSS%}activity-create.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="{%$SP_URL_CSS%}notify.css">
+	<link rel="stylesheet" href="{%$SP_URL_CSS%}bootstrap-select.min.css">
+	<!--[if lte IE 7]>
+	<link rel="stylesheet" type="text/css" href="{%$SP_URL_CSS%}ie.css">
+	<![endif]-->
+{%/block%}
+ 
+{%block name="header-script" %}
+	 <script type="text/javascript">
+	 	var SP_POLICY = "{%$uploadInfo.policy%}", SP_SIGNATURE = "{%$uploadInfo.sign%}";
+	 </script>
+	<script type="text/javascript" src="{%$SP_URL_JS%}bootstrap-select.min.js"></script>
+	<script type="text/javascript" src="{%$SP_URL_JS%}ytab.js"></script>
+	<script language="javascript" type="text/javascript" src="{%$SP_URL_JS%}WdatePicker.js"></script>
+	<script type="text/javascript" src="{%$SP_URL_JS%}posfixed.js"></script>
+	<script src="{%$SP_URL_JS%}swfupload/js/swfupload.js"></script>
+	<script src="{%$SP_URL_JS%}swfupload/js/handlers.js"></script>
+	<script src="{%$SP_URL_JS%}swfupload/js/swfupload.queue.js"></script>
+	<script src="{%$SP_URL_JS%}jquery.validate.min.js"></script>
+	<script src="{%$SP_URL_JS%}jquery.form.js"></script>
+	<script src="{%$SP_URL_STO%}vendor/notify/notify.js"></script>
+{%/block%}
+
+{%block name="page-header"%}
+ <div class="ht-attached ht-user-header" id="header_title" >
+ 	<div class="ht-wrapper-1200" >
+		<span class="ht-left ht-create-margin-top-8"  >
+			<a href="/active/index.html">我的活动</a>
+			 >
+			{%if !empty($option)%} 
+				{%$active.title%}
+			{%else%}
+			创建活动
+			{%/if%}
+		</span>
+		
+		<a href="javascript:void(0);" id="active_submit"  class="btn btn-default ht-right  ht-create-btn-120 ht-create-bth-color2  ht-create-margin-top-8"  > 保 存 </a>
+ 	</div>
+ </div>
+{%/block%}
+
+{%block name="page-content" %}
+	<form id="active_create" {%if !empty($option)%}action="/active/edit.json?id={%$active.id%}"{%else%}action="/active/create.json"{%/if%}>
+	<div class="row" style="margin-left: 0px!important;margin-right:0px!important;background:#fcfcfc">
+			<div class="ht-left ht-user-active-option-l" >
+				<div class="ht-user-active-option">
+					<div class="title">
+						活动基本信息
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">活动标题</label>
+						<input class="form-control input" name="title" value="{%$active.title%}" type="text" style="min-width:95%;width: auto;" />
+					</div>
+					<div class="form-group" >
+						<label>举办日期</label>
+						<div class="form-inline">
+							<input value="{%$active.activit_start|date_format:"%Y-%m-%d %H:%S"%}" class="Wdate form-control input ht-left" style="width: 200px;" id="activit_start" name="activit_start" validate="required:false" type="text" placeholder="开始时间" {%literal%}onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:00',minDate:'%y-%M-{%d+1} %H:%m'})" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:00',minDate:'%y-%M-{%d+1} %H:%m'})"{%/literal%} />
+							<span  class="ht-left ht-create-margin-left-10 ht-create-margin-right-10"> — </span>
+							<input value="{%$active.activit_end|date_format:"%Y-%m-%d %H:%S"%}" class="Wdate form-control input" style="width: 200px;" id="activit_end" name="activit_end" type="text" placeholder="结束时间" {%literal%}onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:00',minDate:'%y-%M-{%d+1} %H:%m'})" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:00',minDate:'%y-%M-{%d+1} %H:%m'})"{%/literal%} />
+						</div>
+					</div>
+					<div class="form-group  ht-activity-line-32">
+						<label>活动城市</label>
+						<div class="form-inline ht-heihgt-32" style="*z-index:9;*position:relative">
+							<select name="province" id="province"  class="selectpicker  ht-create-select ht-left">
+									<option selected="true" value="" disabled="true">省</option>
+									{%foreach item=item from=$province%}
+										<option {%if $active['province'] == $item['id']%} selected="selected" {%/if%}  value="{%$item['id']%}">{%$item['name']%}</option>
+									{%/foreach%} 
+							</select>
+							
+							<select name="city" id="city"  class=" selectpicker ht-create-margin-left-10 ht-create-margin-right-10  ht-left  ht-create-select">
+								<option selected="true" value="" disabled="true" >市</option>
+								{%foreach item=item from=$city%}
+										<option {%if $active['city'] == $item['id']%} selected="selected" {%/if%} value="{%$item['id']%}">{%$item['name']%}</option>
+								{%/foreach%} 
+								
+							</select>
+							
+							<select name="arrea" id="arrea"  class="selectpicker  ht-create-select">
+								<option selected="true" value="" disabled="true">区</option>
+								{%foreach item=item from=$arrea%}
+										<option  {%if $active['arrea'] == $item['id']%} selected="selected" {%/if%} value="{%$item['id']%}">{%$item['name']%}</option>
+								{%/foreach%} 
+							</select>
+							
+						</div>
+						<div id="citys_error" class="error"></div>
+					</div>
+					<div class="form-group ht-activity-line-32" style="clear: both;">
+						<label>详细地址</label>
+						<input  value="{%$active.address%}" class="form-control input" style="min-width:95%;width: auto;" name="address" type="text">
+					</div>
+					<div class="form-group  ht-activity-line-32" >
+						<label>活动封面</label>
+						<div >
+							<div  style="width:235px;float: left;position:relative;">
+								<img id="active_img" class="image" {%if !empty($active.thumbnail)%}src="{%$SP_URL_UPLOAD%}{%$active.thumbnail%}"{%else%} src="{%$SP_URL_IMG%}upload.jpg" {%/if%} />
+								<input type="hidden" name="thumbnail" id="thumbnail" value="{%$active.thumbnail%}" />
+								<div id="progress_num" style="display: none;">100%</div>
+							</div>
+							<div style="float: left;margin-left: 25px;">
+									
+									<!-- <a href="javascript:void(0);" class="btn btn-default  ht-create-btn-170 ht-create-bth-color2" style="height: 36px;padding: 0px!important;line-height: 36px;"> 选择封面 </a>
+									<br/><br/> -->
+									<a href="javascript:void(0)"  class="btn btn-default  ht-create-btn-170 ht-create-bth-color2" style="width: 170;height: 36px;padding: 0px!important;">
+										<div style="position:relative;">
+											<span style="position:absolute;left:0;top:0;line-height: 36px;" class="ht-create-btn-170">自定义封面</span>
+		                                    <span  class="img-responsive center-block uploadButton" data-success="onCallingCardUploaded"></span>
+		                                    <div>
+		                                        <div id="divStatus" style="display: none;">0 个文件已上传</div>
+		                                        <input id="btnCancel" type="button" style="display: none" onclick="swfu.cancelQueue();"/>
+		                                    </div>
+										</div>
+	                                </a>
+								<div class="ht-margin-top-8" >请上传5M以内jpg、png、gif<br/>建议500*300尺寸图片</div>
+							</div>
+						</div>
+					</div>
+					<div style="clear: both"></div>
+				</div>
+			</div>
+
+			<div class="ht-right ht-user-active-option-r">
+				<div class="ht-user-active-option">
+					<div class="title">
+						活动设置
+					</div>
+					
+					<div class="enrollck">
+						<div {%if !empty($active.is_enroll)%} class="ht-active-checkbox-on" {%else%} class="ht-active-checkbox" {%/if%} id="enrollck_div">
+							<input id="enrollck" name="is_enroll" value="1" type="checkbox" {%if !empty($active.is_enroll)%} checked="checked" {%/if%}  />
+						</div>
+						<span>需要报名</span>
+					</div>
+					
+					<div class="hr"></div>
+					
+					<div id="enrolldate" {%if empty($active.is_enroll)%} style="display: none;" {%/if%}>
+						<div class="form-group ht-activity-line-32">
+							<label>报名起止日期</label>
+							<div  class="form-inline">
+								<input {%if !empty($active.enroll_start)%} value="{%$active.enroll_start|date_format:"%Y-%m-%d %H:%S"%}"{%/if%} class="Wdate form-control input" style="float: left;width: 150px!important;" id="enroll_start" name="enroll_start"  type="text" placeholder="开始时间" {%literal%}onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:00',minDate:'%y-%M-%d %H:%m'})" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:00',minDate:'%y-%M-{%d+1} %H:%m'})" {%/literal%} /> 
+								 <span style="float: left;margin-left: 10px;margin-right: 10px;"> — </span>
+								<input {%if !empty($active.enroll_end)%} value="{%$active.enroll_end|date_format:"%Y-%m-%d %H:%S"%}"{%/if%} class="Wdate form-control input" style="float: left;width: 150px!important;" id="enroll_end" name="enroll_end"  type="text" placeholder="结束时间" {%literal%}onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:00',minDate:'%y-%M-%d %H:%m'})" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:00',minDate:'%y-%M-{%d+1} %H:%m'})" {%/literal%} />
+							</div>
+						</div>
+						
+						<div class="form-group ht-activity-line-32" style="clear: both;">
+							<label>活动人数（最大支持参与人数，如不限制请填0）</label>
+							<input class="form-control input" {%if !empty($active.enroll_end)%} value="{%$active.enroll_num%}" {%/if%} name="enroll_num" type="text" style="min-width:95%;width: auto;" />
+						</div>
+						
+						<div class="hr"></div>
+					</div>	
+					
+					
+					<div  style="margin-bottom: 2px !important;">
+						<div {%if !empty($active.is_audit)%} class="ht-active-checkbox-on" {%else%} class="ht-active-checkbox" {%/if%} id="is_audit_div">
+							<input id="is_audit" name="is_audit" value="1" type="checkbox" {%if !empty($active.is_audit)%} checked="checked" {%/if%}  readonly="readonly"/>
+						</div>
+						<span>需要审核（报名人员被审核通过后，才能收到参会签到名片）</span>
+					</div>
+				</div>
+			</div>
+
+	</div>
+	</form>	
+{%/block%}
+
+
+{%block name="footer-script"%}
+	<script src="{%$SP_URL_JS%}bootstrap.min.js"></script>
+	<script src="{%$SP_URL_JS%}jquery.placeholder.min.js"></script>
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="{%$SP_URL_JS%}bootstrap-ie.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+	{%if !empty($option)%}
+	var SP_ACTIVE = 'edit';
+	{%else%}
+	var SP_ACTIVE = 'add';
+	{%/if%}
+	(function ($) {
+	$(document).ready(function() {
+		if ($.isFunction($.bootstrapIE6)) $.bootstrapIE6($(document));
+	});
+	})(jQuery);
+	</script>
+	<script type="text/javascript" src="{%$SP_URL_STO%}modules/activity/create.js"></script>
+	
+{%/block%}

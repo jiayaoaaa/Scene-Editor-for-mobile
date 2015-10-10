@@ -1,0 +1,2 @@
+<a {%if $action eq "index" or $action eq "phoneAuth" or $action eq "authSuccess" or $action eq "emailAuth" %}class="active"{%/if%} href="/account/index.html" >个人信息</a>
+<a {%if $action eq "password" %}class="active"{%/if%} href="/account/password.html">修改密码</a>

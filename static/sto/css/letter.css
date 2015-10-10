@@ -1,0 +1,272 @@
+
+.ht-lettr-main{
+	width:100%;border-top:1px solid #DDD;
+}
+
+.ht-lettr-main .ht-letter-main-right{
+	float:right;
+	border-left:1px solid #DDD;
+	width:920px;
+	padding-bottom:100px;
+	background: #f9f9f9;
+}
+
+.ht-lettr-main .ht-main-left-list {
+	width: 280px;
+}
+
+.ht-lettr-main .ht-main-left-list a {
+	display:block;
+	line-height:32px;
+	border-bottom:1px solid #ccc;
+	padding-left: 25px;height:40px;line-height: 40px;
+}
+
+.ht-lettr-main .ht-auth {
+	display:inline-block;
+	width:11px;
+	height:11px;
+	margin-right:10px;
+	background:transparent url(../img/dot-black.png) no-repeat 0 0;
+	*float: left;
+	*margin-top:15px;
+}
+.ht-lettr-main .ht-auth-ok {
+	background-image:url(../img/dot.png);
+}
+
+.ht-lettr-crumb {
+	height: 50px;font-size:14px;line-height: 50px;
+}
+.ht-lettr-crumb .ht-lettr-crumb-title{
+	margin-left:30px;width:500px;
+}
+
+.ht-lettr-header{
+	margin:0px 30px 30px;border: 1px solid #DDD;height:150px;
+}
+
+.ht-lettr-header .ht-lettr-header-left{
+	width:250px;height:100%;float: left;border-right:1px solid #DDD;
+}
+
+.ht-lettr-header .ht-lettr-header-right{
+	width:280px;height:100%;float: right;
+}
+.ht-lettr-header .ht-lettr-header-right .ht-letter-right-main{
+	margin-top: 25px;
+	padding-left: 25px;
+	border-left:1px solid #DDD;
+	*display:inline-block;
+
+}
+/*.ht-letter-right-main .ht-left img{padding:2px;border:1px solid #d3d7da;border-radius:5px;}*/
+.ht-letter-right-main .ht-left img{width:100px; height:100px;}
+.ht-letter-right-main .ht-left{
+	color:#a7a7a7;
+}
+.ht-lettr-header .ht-lettr-header-right .ht-letter-right-main .ht-letter-right-wx{
+	padding-left: 10px;padding-top: 10px;font-size:12px!important;
+}
+
+.ht-lettr-header .ht-lettr-header-center{
+	height:100%;
+	margin-right:0px;
+	padding-left:30px;
+	float: left;
+}
+.ht-lettr-header .ht-lettr-header-center .ht-letter-header-center-title{
+	margin-top: 20px;
+	margin-bottom:10px;
+	font-size:18px;
+	font-weight: 700;
+	height:30px;
+	line-height: 30px;
+}
+
+.ht-lettr-header .ht-lettr-header-center .ht-letter-header-center-title .ht-auth {
+	display:inline-block;
+	width: 11px;
+	height: 11px;
+	*+width:18px;
+	*+height:18px;
+	background:transparent url(../img/dot-black.png) no-repeat 0 0;
+	display:none;
+}
+.ht-lettr-header .ht-lettr-header-center p{
+	font-size:14px;
+	line-height: 20px;
+}
+
+/*.ht-lettr-header .ht-lettr-header-center .address{
+	color: #c8c8c8;
+}
+*/
+.ht-letter-createLetter {
+    padding-top: 30px;
+}
+
+.ht-createLetter-btn-wrapper {
+	position:relative;
+	width:300px;
+	height:200px;
+	margin:0 auto;
+	overflow:hidden;
+	border:1px solid #ddd;
+	text-align:center;
+	border-radius:6px;
+	background: #fff;
+	color:#afafaf;
+}
+
+.ht-createLetter-btn-icon {
+	display:inline-block;
+	width: 54px;
+	height: 54px;
+	margin:30px auto 10px;
+	background:transparent url(../img/create.png) no-repeat 0 0;
+}
+.ht-createLetter-btn{
+	margin-top: 20px!important;
+	background-color: #12aaeb;
+	font-size:18px;
+	font-weight: 550;
+	color:#ffffff;
+	border:0;
+	padding:6px 25px;
+	font-size:14px;
+}
+.ht-createLetter-btn:hover{
+	background: #12aaeb;
+	color:#fff;
+}
+.ht-letter-item {
+    position: relative;
+    height: 210px;
+    width:435px;
+    float: left;
+    overflow: hidden;
+    margin-left: 16.5px;
+    margin-top: 17px;
+    border: 1px solid #DDD;
+	background: #fff;
+}
+
+.ht-letter-item .ht-letter-item-img{
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-right: 10px;
+	height:100%;
+	border-right: 1px solid #DDD;
+	text-align: center;
+	color:#a7a7a7;
+}
+/*.ht-letter-item .ht-letter-item-img img{
+	border:1px solid #d3d7da;
+	border-radius:5px;
+	margin-bottom:3px;
+}*/
+.ht-letter-item .ht-letter-item-img p{
+	margin-top: -3px;
+	
+}
+.ht-letter-item .ht-letter-item-body{
+	width: 230px;
+}
+
+.ht-letter-item .ht-letter-item-body .ht-letter-item-left{
+	height:210px;
+	width: 200px;
+	float:left;
+}
+.ht-letter-item .ht-letter-item-body .ht-letter-item-body-top{
+	margin-right:0px;
+	padding-top:20px;
+	overflow: hidden;
+
+}
+.ht-letter-item .ht-letter-item-body .ht-letter-item-body-bottom{
+	padding-top:15px;
+	color:#bfbfbf;
+}
+.ht-letter-edit{
+	height:25px;
+	width: 25px;
+	background: url(../img/edit.png);
+	cursor: pointer;
+}
+.ht-createLetter-btn-add{
+	height: 210px;
+	position:relative;
+	width:100%;
+	margin:0 auto;
+	overflow:hidden;
+	text-align:center;
+	border-radius:6px;
+}
+
+.ht-submenu-settingbtn {
+    width: 25px;
+    height: 25px;
+    background: transparent url("../img/setting01.png") no-repeat scroll center center;
+    cursor: pointer;
+}
+
+.ht-submenu-item {
+    position: absolute;
+    top: 25px;
+    right: -1px;
+    width: 90px;
+    background-color: #FFF;
+ 	
+	word-wrap:break-word;
+	border:  1px solid #ccc;
+	display:none;
+}
+.ht-submenu-item a{cursor: pointer;}
+.ht-submenu-item .line {
+    border-bottom: 1px solid #ccc;
+}
+.ht-submenu-btn{
+	width:90px;
+	height:32px;
+	
+}
+.ht-submenu-btn span{
+	padding-left: 40px;
+}
+.ht-submenu:hover .ht-submenu-item{
+	display:block;
+}
+.ht-subMenu-icon01,.ht-subMenu-icon04{
+	width:21px;
+	height: 19px;
+	display: inline-block;
+	position: absolute;
+	margin:7px 0 0 12px;
+	*margin:1px 0 0 12px;
+}
+.ht-subMenu-icon01{
+	background: url(../img/icon-subMenu02.png) center no-repeat;
+}
+.ht-subMenu-icon04{
+	background: url(../img/icon-subMenu05.png) center no-repeat;
+}
+.ht-submenu-item a {
+    line-height: 32px;
+    color: #727171;
+    font-size: 14px;
+}
+.ht-letter-tit{
+	font-size: 18px;
+	font-weight:bold;
+	padding-bottom: 10px;
+	overflow:hidden;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.ht-letter-text{
+	line-height:22px;
+	height:110px;
+	overflow: hidden;
+}

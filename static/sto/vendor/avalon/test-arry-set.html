@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>avalon入门</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="avalon.js" type="text/javascript"></script>
+    <script>
+
+    var i=0
+    var model = avalon.define({
+        $id: "test",
+        arr: [{ index:0,
+                pagebgColor: '#ffffff',
+                pagebgImage: '',
+                comInsList: [{
+                    type: 'text',
+                    content: '默认初始第一页',
+                    width: '160',
+                    height: '80',
+                    left: '100',
+                    top: '210',
+                    textAlign: 'center',
+                    backgroundColor: '',
+                    lineHeight:'1.5',
+                    fontColor:'',
+                    opacity: 100,
+                    fontSize:'28',
+                    zIndex:1,
+                    borderStyle: 'none',
+                    borderColor: 'none',
+                    borderWidth: '0',
+                    borderRadius: '0',
+                        animationName: 'rotateIn',
+                        animationDuration: '1',
+                        animationDelay: '0',
+                        animationIterationCount: 1,
+                    }]
+        }],
+        add: function() {
+            // model.arr.set(0,0);
+
+            i++;
+
+            model.arr.push({
+                index:i,
+                pagebgColor: '#ffffff',
+                pagebgImage: '',
+                comInsList: [{
+                    type: 'text',
+                    content: '默认初始第一页',
+                    width: '160',
+                    height: '80',
+                    left: '100',
+                    top: '210',
+                    textAlign: 'center',
+                    backgroundColor: '',
+                    lineHeight:'1.5',
+                    fontColor:'',
+                    opacity: 100,
+                    fontSize:'28',
+                    zIndex:1,
+                    borderStyle: 'none',
+                    borderColor: 'none',
+                    borderWidth: '0',
+                    borderRadius: '0',
+                        animationName: 'rotateIn',
+                        animationDuration: '1',
+                        animationDelay: '0',
+                        animationIterationCount: 1,
+                    }]
+        })
+            console.log(model.arr)
+        },
+        remove(index){
+
+            model.arr.removeAt(index)
+
+        },
+        change:function(){
+
+model.arr=[{index:1},{index:2},{index:3},{index:4},{index:5}]
+        }
+    })
+    </script>
+</head>
+
+<body>
+    <div ms-controller="test">
+        <div ms-repeat="arr" ms-click=remove($index)>
+            {{el.index}} {{$index}}
+        </div>
+        <button ms-click=add>添加元素</button>
+         <button ms-click=change>更改数值</button>
+    </div>
+</body>
+
+</html>

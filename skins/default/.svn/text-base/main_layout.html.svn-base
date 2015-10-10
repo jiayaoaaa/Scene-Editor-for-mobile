@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{%block name="title"%}{%/block%} - 会通，邀请函、在线报名、电子签到</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="keyword" content="电子邀请函，在线报名、电子签到、会议系统、在线会议管理" />
+    <meta name="description" content="会通是会唐专为会议主办方打造的专业职能会议管理工具，让办会变的更容易。场景邀请函简单易用，在线报名省时省力，电子签到专业高效。" />
+    <link rel="shortcut icon" href="{%$SP_URL_IMG%}favicon.ico" type="image/x-icon" />
+	{%block name="header-css"%} {%/block%}
+    <script type="text/javascript">
+    	var SP_URL_STO = '{%$SP_URL_STO%}';
+    </script>
+    {%block name="header-script"%}{%/block%}
+   
+    <style>
+    .ms-controller {
+        visibility: hidden;
+    }
+    </style>
+</head>
+
+<body ms-controller="indexPage">
+    <!-- <div class="header">
+        <div class="logo"><img src="{%$SP_URL_STO%}img/logo.png" alt=""></div>
+        <div class="menu">
+            <a href="#"  ms-click="showlogin" class="ht-btn-blue">登录</a>
+            <a href="#"  ms-click="showreg" class="ht-btn-gray">注册</a>
+        </div>
+    </div> -->
+	{%include file="tpl_header.html"%}
+
+    {%block name="page-content"%}{%/block%}
+    <!--注册end-->
+    {%include file="tpl_footer.html"%}
+    {%block name="footer-script"%}{%/block%}
+</body>
+
+</html>

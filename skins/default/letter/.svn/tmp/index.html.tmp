@@ -1,0 +1,108 @@
+{%extends file="../letter_layout.html"%} 
+{%block name="title" append%}
+邀请函列表
+{%/block%}
+
+{%block name="header-css"%}
+<!--[if lt IE 8]>
+	<link rel="stylesheet" type="text/css" href="{%$SP_URL_CSS%}ie.css">
+<![endif]-->
+{%/block%}
+{%block name="header-script" %}
+<script src="{%$SP_URL_STO%}js/loader.js"></script>
+<script src="{%$SP_URL_STO%}js/common.js"></script>
+<script src="{%$SP_URL_STO%}vendor/arttemplate/template-native.js"></script>
+<script type="text/javascript">
+	var SP_URL_LEETTER = '/letter/index.json?id={%$active.id%}';
+</script>
+
+{%/block%}
+
+{%block name="page-crumb"%}
+	<a href="/active/index.html">我的活动</a>  > 活动邀请函
+{%/block%}
+
+
+{%block name="page-content" %}
+ddddddddddddd
+	<!--start 创建部分 -->
+	<div id="createButton" style="display:none;">
+		<div class="ht-letter-createLetter">
+			<div class="ht-createLetter-btn-wrapper">
+				<i class="ht-createLetter-btn-icon"></i>
+				<p>快来创建活动的第一个邀请函吧</p>
+				<a href="javascript:addLetter({%$active.id%});" class="btn ht-createLetter-btn  ht-btn-blue">创建邀请函</a>
+			</div>
+		</div>
+	</div>
+	<!--end 创建部分-->
+	
+	<div id="itemlist" ></div>
+	<div class="ht-clearL"></div>
+	<div id="pagestring" ></div>
+{%/block%}
+
+{%block name="footer-script"%}
+<script id="listtemplate" type="text/html">
+<% if (data){ %>
+	<% for(var i=0,len=data.length; i<len; i++) { %>
+		<!--start 邀请函集合 -->
+		<div class="ht-letter-item">
+			<div class="ht-left ht-letter-item-img">
+				<a href="/letter/show/<%=data[i].sid %>.html"><img  width="170" height="170" src="/letter/rcode.html?id=<%=data[i].id %>" /></a>
+				<p>
+					微信 扫一扫 分享
+				</p>
+			</div>
+			<div class="ht-right  ht-letter-item-body">
+					<div class="ht-letter-item-left" >
+						<div class="ht-letter-item-body-top">
+							<p class="ht-letter-tit" ><%=data[i].title %></p>
+							<p class="ht-letter-text" ><%=data[i].discrib %></p>
+						</div>
+						<div class="ht-letter-item-body-bottom">
+							<%=dateFormat(data[i].crttime * 1000, "yyyy.MM.dd hh:mm") %>
+						</div>
+					</div>
+					<div class="ht-right ht-submenu"  style="border-left:1px solid #CCC;border-bottom:1px solid #CCC;" >
+						<div class="ht-submenu-settingbtn" ></div>
+						<div class="ht-submenu-item">
+							<a href="/active/lettereditor.html?id=<%=data[i].id %>"  target="_black">
+								<div class="ht-submenu-btn line">
+									<i class="ht-subMenu-icon01"></i>
+									<span>编辑</span>
+								</div>
+							</a>
+							<a href="javascript:;" onclick="delLetter('<%=data[i].id %>')">
+								<div  class="ht-submenu-btn">
+									<i class="ht-subMenu-icon04"></i>
+									<span>删除</span>
+								</div>
+							</a>
+						</div>
+					</div>
+			</div>
+			<div class="ht-clear"></div>
+		</div>
+		<!--end 邀请函集合 -->
+	<% } %>
+	<!--start 集合添加-->
+		<div class="ht-letter-item">
+			<a href="javascript:addLetter({%$active.id%});">
+				<div class="ht-createLetter-btn-add">
+						<i class="ht-createLetter-btn-icon"></i>
+						<p style="margin-top: 20px;">你还可以为该活动创建更多的邀请函</p>
+				</div>
+			</a>
+		</div>
+	<!--end 集合添加-->
+<% } %>	
+</script>
+<!-- 本页 js -->
+<script src="{%$SP_URL_JS%}SysUtil.js"></script>
+<script src="{%$SP_URL_STO%}modules/letter/index.js"></script>
+<script src="{%$SP_URL_JS%}jquery.placeholder.min.js"></script>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="{%$SP_URL_JS%}bootstrap-ie.js"></script>
+<![endif]-->
+{%/block%}

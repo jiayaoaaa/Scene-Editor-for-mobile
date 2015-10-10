@@ -1,0 +1,423 @@
+/**
+ * common
+ * @author yu
+ */
+body {
+  width: 100%;
+  margin: 0;
+  font-size: 14px;
+  font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+  line-height: 20px;
+  background-color:#fff;
+  color:#666;
+}
+object  {margin:0; padding:0;}
+a {color:#666; text-decoration:none; }
+a:hover {text-decoration:none; }
+a:link{text-decoration:none;}
+a:visited{text-decoration:none;border:0px;}
+a:active{text-decoration:none;}
+a:focus{outline:none;}
+i {font-style: normal;}
+ul {margin:0; padding:0; list-style-type:none;}
+li {margin:0; padding:0;}  /* li 添加上 display block 后就无法正常显示列表图标了 */
+div, p {margin:0; padding:0; word-wrap:break-word; word-break:break-all;}
+h1, h2, h3, h4, h5, h6 {margin:0 0 0 0; padding:0;}
+img {border:0;}
+form {margin:0;}
+
+/* common */
+.ht-pull-left {float:left;}
+.ht-pull-right {float:right;}
+.ht-clear {clear:both;height:0;padding:0;border:0;overflow:hidden;font-size:0px;}
+.ht-clearL {clear:left;height:0;padding:0;border:0;overflow:hidden;font-size:0px;}
+.ht-clearR {clear:right;height:0;padding:0;border:0;overflow:hidden;font-size:0px;}
+
+/* 分页 */
+#pagestring {
+	padding:20px 0 0 20px;
+	margin-bottom: 50px;
+}
+#pager a {border:1px solid #ddd; display:inline-block; width:100%;}
+#pager a:hover { border:1px solid #666; }
+#pager > div {
+	margin-right:8px;
+	float:left;
+	min-width:24px;
+	height:24px;
+	line-height:24px;
+	border:1px solid #ddd;
+	font-size:12px;
+	text-align:center;
+}
+#pager .btncenter {background-color:#F0F0F0;}
+#pager .current .btncenter {
+	background-color:#FFF;
+}
+#pager .next, #pager .prev {float:left;}
+
+/* share */
+.ht-share {text-align:center;}
+.ht-share a {
+	display:inline-block;
+	width:32px;
+	height:32px;
+	background-image:url(../img/share.png);
+	background-repeat:no-repeat;
+	margin-left:12px;
+}
+.ht-share a:hover {
+	opacity: .8;
+	filter:alpha(opacity:80);
+}
+.ht-share-sina {
+	background-position:0 -104px;
+}
+.ht-share-qzone {
+	background-position:0 -52px;
+}
+.ht-share-more {
+	background-position:0 0;
+}
+.ht-share-weixin {
+	background-position:0 -1612px;
+}
+
+/* container */
+.ht-maincontainer {
+	margin:30px 22px 0 22px;
+	border:1px solid #ddd;
+}
+.ht-wrapper-1200 {
+	width:1202px;
+	margin:0 auto;
+	
+}
+ 
+/* header */
+.ht-header {
+	width:100%;
+	height:70px;
+	/**margin-bottom:2px;*/
+	background-color:#fff;
+	/*border-bottom:1px solid #ccc;*/
+}
+.ht-header .menu{
+	float: right;
+	padding-top:14px;
+}
+.ht-header .menu  a{
+	margin: 0  0 0 10px;
+	padding: 12px 35px;
+	letter-spacing: 4px;
+	display:inline-block;
+}
+.ht-header-wrapper {margin:0 12px 0 12px;}
+.ht-logo {margin-top:20px;}
+.ht-usernav {}
+.ht-user {  /* div */
+	position:relative;
+	z-index:11;
+}
+.ht-user .ht-user-navlink {  /* div > <a> */
+	display:block;
+	height:69px;
+	width:70px;
+	text-align:center;
+	background:#FFFFFF;
+	border:1px solid #fff;
+	border-bottom-width:0;
+	z-index: 14;
+	position: relative;
+}
+.ht-user:hover a.show,  /* in order to still show bgcolor on dropdown open */
+	.ht-user .ht-user-navlink:hover {
+	color:#000;
+	height:69px;
+	width:70px;
+	border-right:1px solid #ddd;
+	border-left:1px solid #ddd;
+	border-bottom:1px solid #FFFFFF;
+	background:#FFFFFF;
+	z-index:14;
+	
+}
+.ht-user img {width:50px; height:50px; position:relative; top:10px; border-radius:25px;z-index:999;}
+.ht-user:hover .ht-user-dropdown{display:block;}
+.ht-user-dropdown {
+	position:absolute;
+	z-index:12;
+	top:68px;
+	*top:70px;
+	right:0;
+	width:120px;
+	line-height:32px;
+	border:1px solid #d3d7da;
+	background-color:#FFFFFF;
+	display:none;
+	overflow: hidden;
+	border-radius:0 0 5px 5px;
+}
+.ht-user-dropdown a {
+	display:block;
+	z-index:12;
+	color:#727171;
+}
+.ht-user-dropdown a:hover {
+	background-color:#edeff0;
+	color:#727171;
+}
+.ht-user-dropdown a.line {border-bottom:1px solid #edeff0;}
+.ht-topNav-icon01,.ht-topNav-icon02,.ht-topNav-icon03,.ht-topNav-icon04,.ht-topNav-icon05{
+	width: 22px;
+	height: 22px;
+	display:inline-block;
+	position: absolute;
+	margin:5px 0 0 15px;
+	*margin:-1px 0 0 15px;
+}
+.ht-user-dropdown a span{
+	padding-left:45px;
+}
+.ht-topNav-icon01{
+    background: url(../img/icon-topNav01.png);
+}
+.ht-topNav-icon02{
+    background: url(../img/icon-topNav02.png);
+}
+.ht-topNav-icon03{
+    background: url(../img/icon-topNav03.png);
+}
+.ht-topNav-icon04{
+    background: url(../img/icon-topNav04.png);
+}
+.ht-topNav-icon05{
+    background: url(../img/icon-topNav05.png);
+}
+.ht-user-header{
+	border-radius:0px  !important;
+	height:50px;
+	margin-left:0px;
+	margin-right:0px;
+	width:100%;
+	left:0px;
+	z-index: 9999;
+	font-size: 15px !important;
+	font-weight: 100 !important;
+}
+.ht-user-header span{
+	height:38px;
+	line-height: 36px;
+}
+.ht-attached{  /**面包屑颜色**/
+    width:100%;
+    
+}
+.ht-attached .ht-wrapper-1200{
+	width:1202px;
+	*width:1152px;
+	padding:0 25px;
+	border:1px solid #ddd;
+	border-bottom-width:0;
+	height:50px;
+	background: #fff;
+}
+.ht-user-active-option{
+	margin-left: 30px !important;
+	margin-top:  40px !important;
+	margin-right: 25px !important;
+	margin-bottom: 215px !important;
+	font-size: 14px !important;
+}
+
+.ht-user-active-option .input{
+	border:1px solid #e3e3e3!important;
+}
+
+.ht-user-active-option .title{
+	font-size: 24px;
+	margin-bottom: 15px !important;
+	border-bottom:1px dashed #ddd;
+	padding-bottom: 20px;
+}
+
+.ht-user-active-option .hr{
+	margin-bottom: 15px !important;
+	border-bottom:1px dashed #ddd;
+	padding-bottom: 20px;
+}
+
+.ht-user-active-option .image{
+	width: 235px;
+	height:137px;
+}
+.ht-user-active-option .optionbox{
+	position: relative;
+}
+.ht-user-active-option-l{
+	border-right: 1px solid #ddd;
+	width: 712px !important;
+	background: #fff;
+}
+
+.ht-user-active-option-r{
+	width: 484px !important;
+}
+.ht-user-selectd{
+	padding: 0.83em 0.95em !important;
+	border: 1px solid #999 !important;
+}
+
+.ht-right{ float: right; }
+.ht-left{ float: left; }
+
+.ht-margin-top-8{
+	margin-top: 8px !important;
+}
+.ht-user-footer{
+	width:1200px;
+	margin:0px auto 0;
+	height:50px;
+	line-height: 50px;
+	font-size: 12px;
+	color: #666;
+	text-align: center;
+}
+/*.ht-bottom-nav a{
+	display:inline-block;
+	margin:15px 5px 5px 5px;
+	color:#666;
+}*/
+.ui.button{
+	min-height: 1em!important;padding: 0.8em 1.5em!important;
+}
+.ui .menu{
+	border:1px solid #ddd!important;
+}
+label.error
+{
+	color:red;
+	font-size:13px!important;
+	clear: both;
+} 
+div.error
+{
+	color:red;
+	font-size:13px!important;
+	clear: both;
+	font-weight: 700;
+} 
+.ht-user-edit{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	display: none;
+}
+.ht-maincontainer-left:hover .ht-user-edit{
+	display: block;
+}
+.modal{
+	text-align: center;
+}
+.modal-dialog{
+	width:650px!important;
+	margin-top:150px!important;
+	margin-left:auto!important;
+	margin-right:auto!important;
+}
+
+.ht-user-btn-blue, .ht-user-btn-green{
+	font-size:16px;
+	color:#fff;
+	border: none;
+	border-radius:40px;
+	width:170px;
+	text-align: center;
+	line-height:34px;
+	height: 34px;
+}
+.ht-user-btn-blue{
+	background-color:#12aaeb;
+}
+
+.ht-account-avatar-btn .ht-user-btn-blue{
+	position: absolute;
+	cursor:pointer;
+	z-index: 99
+}
+.ht-user-btn-green{
+	background-color:#76d728;
+}
+.ht-user-btn-blue:hover{
+	background-color:#0088c2;
+}
+.ht-user-btn-green:hover{
+	background-color:#4dac01;
+}			
+.ht-user-path{
+	border-bottom:1px solid #ddd;
+	height:45px;
+	line-height: 45px;
+	padding:0 25px;
+}
+.ht-btn-blue, .btn.ht-btn-blue {
+    background-color: #12aaeb;
+    border: medium none;
+    border-radius: 40px;
+    color: #fff !important;
+    font-size: 16px;
+}
+.ht-btn-blue:hover, .btn.ht-btn-blue:hover{
+	background-color: #0088c2;
+}
+.ht-btn-green, .btn.ht-btn-green {
+    background-color: #76d728;
+    border: medium none;
+    border-radius: 40px;
+    color: #fff !important;
+    font-size: 16px;
+}
+.ht-btn-green:hover, .btn.ht-btn-green:hover {
+    background-color: #4dac01;
+}
+.ht-btn-gray, .btn.ht-btn-gray {
+    background-color: #b3b5b4;
+    border: medium none;
+    border-radius: 40px;
+    color: #fff !important;
+    font-size: 16px;
+}
+.ht-btn-gray:hover, .btn.ht-btn-gray:hover {
+    background-color: #8c8c8c;
+}
+.ht-btn-orange, .btn.ht-btn-orange {
+    background-color: #fc4b0e;
+    border: medium none;
+    border-radius: 40px;
+    color: #fff !important;
+    font-size: 16px;
+}
+.ht-btn-orange:hover, .btn.ht-btn-orange:hover {
+    background-color: #d23600;
+}
+.layer-bg{
+	background: #000;
+	filter:alpha(opacity=50);
+	opacity: 0.5;
+	width:100%;
+	height:100%;
+	position:fixed;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	
+	z-index:900;
+}
+.close{
+	background:url(../img/close01.png) no-repeat center ;
+	width:18px;
+	height:18px;
+	overflow: hidden;
+	text-indent:100px;
+}

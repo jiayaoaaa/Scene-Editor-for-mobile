@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>500 页面访问出错了</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Administrator" />
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="stylesheet" href="{%$SP_URL_STO%}css/backcommon.css">
+        <link rel="stylesheet" href="{%$SP_URL_STO%}css/error.css">
+	</head>
+	<body>
+        <div class="hr-404-top"><a href="/"></a></div>
+		<div class="ht-404-box">
+           <div class="ht-500-icon"></div>
+             <h3>哎呀亲...你访问的页面出错了</h3>
+             <p>你输入的网址有误或者链接已经过期。</p>
+             <a class="ht-goHome" href="/">返回首页</a>
+        </div>
+        {%include file="../tpl_footer.html"%}
+	</body>
+</html>

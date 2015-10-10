@@ -1,0 +1,140 @@
+{%extends file="../layout.html"%} 
+{%block name="title" append%}
+个人信息
+{%/block%}
+
+{%block name="header-css"%}
+<link rel="stylesheet" href="{%$SP_URL_CSS%}notify.css"  />
+<link href="{%$SP_URL_CSS%}account.css" rel="stylesheet" />
+<!--[if lte IE 7]>
+	<link rel="stylesheet" type="text/css" href="{%$SP_URL_CSS%}ie.css">
+<![endif]-->
+<link rel="stylesheet" href="{%$SP_URL_CSS%}bootstrap-select.min.css">
+{%/block%}
+{%block name="header-script" %}
+<script src="{%$SP_URL_STO%}js/common.js"></script>
+<script>
+var SP_URL_UPLOAD = '{%$SP_URL_UPLOAD%}';
+var SP_POLICY = "{%$uploadInfo.policy%}", SP_SIGNATURE = "{%$uploadInfo.sign%}";
+</script>
+<script src="{%$SP_URL_JS%}bootstrap.min.js"></script>
+<script type="text/javascript" src="{%$SP_URL_JS%}bootstrap-select.min.js"></script>
+<script src="{%$SP_URL_STO%}vendor/notify/notify.js"></script>
+{%/block%}
+
+{%block name="page-content" %}
+<div class="ht-user-path">&nbsp;&lt;&nbsp;<a href="/active/index.html">返回我的活动</a></div>
+<div class="ht-account">
+	<div class="ht-account-left ht-pull-left">
+	{%include file="./nav.html"%}
+	</div>
+	<div class="ht-account-right ht-pull-left">
+		<div class="ht-account-right-wrapper">
+			<h2>个人信息 ( ID : {%$user['userid']%} )</h2>
+			<div class="ht-account-form">
+				<form id="f1" name="f1">
+					<div class="ht-account-form-left ht-pull-left">
+						<div class="form-group" style="margin-bottom: 0px!important;">
+							<label for="exampleInputEmail1">昵称</label>
+							<input type="text" id="name" name="name" value="{%$user['name']%}" class="form-control ht-user-input">
+						</div>
+						<div class="form-group ht-account-line-32 ht-user-form-line-height">
+							<label for="exampleInputEmail1">性别</label>
+							<div class="form-inline ht-heihgt-32">
+								<select id="gender" name="gender" class="selectpicker ht-create-select">
+									<option value="1" {%if $user['gender'] eq "1" %}selected="selected"{%/if%}>男</option>
+									<option value="0" {%if $user['gender'] eq "0" %}selected="selected"{%/if%}>女</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group ht-user-form-line-height" style="clear: both;">
+                            <label for="exampleInputEmail1">手机
+                                {%if $auth['mobile_status'] neq '1' %}
+                                <font color="#fd5e7a">*</font><span>(未验证)</span><span class="checkPhoneEmail"><a href="/account/phoneAuth.html">验证</a></span>
+                                {%/if%}
+                            </label>
+                            <label></label>
+							<input type="text" id="mobile" name="mobile" {%if $auth['mobile_status'] eq '1' %}disabled="disabled"{%/if%} class="form-control ht-user-input" value="{%$user['mobile']%}">
+						</div>
+						<div class="form-group ht-user-form-line-height">
+							<label for="exampleInputEmail1">邮箱
+                                {%if $auth['email_status'] neq '1' %}
+                                <font color="#fd5e7a">*</font><span>(未验证)</span><span class="checkPhoneEmail"><a href="/account/emailAuth.html">验证</a></span>
+                                {%/if%}
+                            </label>
+							<input type="text" id="email" {%if $auth['email_status'] eq '1' %}disabled="disabled"{%/if%} name="email" class="form-control ht-user-input" value="{%$user['email']%}">
+						</div>
+						<div class="form-group  ht-account-line-32 ht-user-form-line-height">
+							<label for="exampleInputEmail1">所在地</label>
+							<div class="form-inline ht-heihgt-32">
+							
+									<select data-value="{%$user['province']%}" id="province" name="province" class="selectpicker ht-create-select ht-left">
+										<option selected="true" value="" disabled="true">省</option>
+										{%foreach item=item from=$province%}
+											<option {%if $user.province == $item.id%} selected="selected" {%/if%}  value="{%$item.id%}">{%$item.name%}</option>
+										{%/foreach%} 
+									</select>
+									
+									<select data-value="{%$user['city']%}" id="city" name="city" class="selectpicker ht-create-select ht-left" >
+										<option selected="true" value="" disabled="true">市</option>
+										{%foreach item=item from=$city%}
+												<option {%if $user.city == $item.id%} selected="selected" {%/if%} value="{%$item.id%}">{%$item.name%}</option>
+										{%/foreach%} 
+									</select>
+									
+									<select data-value="{%$user['area']%}" id="area" name="area" class="selectpicker ht-create-select">
+										<option selected="true" value="" disabled="true">区</option>
+										{%foreach item=item from=$arrea%}
+												<option  {%if $user.area == $item.id%} selected="selected" {%/if%} value="{%$item.id%}">{%$item.name%}</option>
+										{%/foreach%} 
+									</select>
+							
+							</div>
+						</div>
+						<button type="button" id="doPost" style="margin-top: 30px; padding:0;" class="ht-user-btn-blue">保&nbsp;&nbsp;存</button>
+					</div>
+					<div class="ht-account-form-right ht-pull-right">
+						<!-- 头像地址 -->
+						<input type="hidden" name="face" id="face" value="{%$user['face']%}" />
+						
+						<div class="ht-account-form-right-wrapper">
+							<div class="ht-account-avatar">
+								<img id="overview" width="180" height="180" {%if !empty($user['face'])%} src="{%$SP_URL_UPLOAD%}{%$user['face']%}" {%else%} src="{%$SP_URL_IMG%}dzx.jpg" {%/if%} />
+								<div id="progress_num" style="display: none;">100%</div>
+							</div>
+							<div class="ht-account-avatar-btn">
+								<div class="ht-user-btn-blue">选择头像</div>
+								<span id="facebtn"></span>
+								<div>
+									<div id="divStatus" style="display: none;">0 个文件已上传</div>
+									<input id="btnCancel" type="button" style="display: none" onclick="swfu.cancelQueue();"/>
+								</div>
+							</div>
+							<div class="ht-account-avatar-info">
+								请上传 5M 以内 jpg、png、gif 建议 500*500 尺寸图片
+							</div>
+						</div>
+					</div>
+					<div class="ht-clear"></div>
+					
+					
+				</form>
+			</div>
+		</div>
+	</div><div class="ht-clearL"></div>
+</div>
+
+{%/block%}
+{%block name="footer-script"%}
+<!-- 本页 js -->
+<script src="{%$SP_URL_STO%}js/liandong.js"></script>
+<!--
+<script src="{%$SP_URL_STO%}js/swfupload/swfuplaod-total.js"></script>
+-->
+<script src="{%$SP_URL_JS%}swfupload/js/swfupload.js"></script>
+<script src="{%$SP_URL_JS%}swfupload/js/fileprogress.js"></script>
+<script src="{%$SP_URL_JS%}swfupload/js/handlers.js"></script>
+<script src="{%$SP_URL_JS%}swfupload/js/swfupload.queue.js"></script>
+<script src="{%$SP_URL_STO%}js/jquery.validate.min.js"></script>
+<script src="{%$SP_URL_STO%}modules/account/index.js"></script>
+{%/block%}

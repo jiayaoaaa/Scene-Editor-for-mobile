@@ -1,0 +1,165 @@
+<?php
+if(defined('LIB_ROOT')) return;	// 防止重复定义
+
+if(!session_id()){
+	session_start();
+}
+error_reporting(0);
+if('WINNT' == PHP_OS || 'Darwin' == PHP_OS) // 为 windows & macosx 下调试用，仅 beta 和 开发 环境
+{
+	// error_reporting(E_ALL);
+	// ini_set('display_errors', '1');
+	if ('WINNT' == PHP_OS ) {
+		define('LIB_ROOT', dirname(__FILE__) .'/../library/' );
+		define('WEB_ROOT',	dirname(__FILE__) .'/../web/');
+		define('SKIN_ROOT',	dirname(__FILE__) .'/../skins/');
+        define('STO_CSS_ROOT', dirname(__FILE__) .'/../static/sto/c/');
+        define('STO_IMG_ROOT', dirname(__FILE__) .'/../static/sto/i/');
+        define('STO_JS_ROOT', dirname(__FILE__) .'/../static/sto/j/');
+		defined('CONF_ROOT') || define('CONF_ROOT',  dirname(__FILE__) . '/' );
+		define('LOG_ROOT', dirname(__FILE__) .'/../logs/' );
+		define('TMP_ROOT',	dirname(__FILE__) .'/../tmp/');//tmp缓存文件夹
+	}
+	else {
+		define('LIB_ROOT', '/opt/sproot/library/' );
+		define('WEB_ROOT',	'/opt/sproot/web/');
+		define('SKIN_ROOT',	'/opt/sproot/skins/');
+        define('STO_CSS_ROOT',	'/opt/sproot/static/sto/c/');
+		define('STO_IMG_ROOT',	'/opt/sproot/static/sto/i/');
+        define('STO_JS_ROOT',	'/opt/sproot/static/sto/j/');
+		defined('CONF_ROOT') || define('CONF_ROOT', '/opt/sproot/config_dev/' );
+		define('LOG_ROOT', '/opt/sproot/logs/' );
+		define('TMP_ROOT',	'/tmp/');//tmp缓存文件夹
+	}
+	define('DOC_ROOT',	WEB_ROOT.'www/');
+
+	defined('LOG_LEVEL') || define('LOG_LEVEL', 6 ); // 3=err,4=warn,5=notice,6=info,7=debug
+	define('SP_DOMAIN_SUFFIX', 'huitong.cc' );
+	define('SP_STATIC_HOST', 'm.huitong.cc' );
+	define('SP_FILE_HOST', 'img.i.huitong.com' ); // storage host
+    define('SP_UPLOAD_HOST', 'img.i.huitong.com' );	// 可以上传的服务器名称 storage host
+    
+	defined('_PS_DEBUG') || define('_PS_DEBUG', TRUE );	// DEBUG , beta only
+	defined('_DB_DEBUG') || define('_DB_DEBUG', TRUE );	// DEBUG , beta only
+
+	define('CACHE_MEMCACHE_SERVERS', '192.168.100.23:11211' );
+	defined('CACHE_MEMCACHE_DEBUG') || define('CACHE_MEMCACHE_DEBUG', _PS_DEBUG );
+
+	define('CACHE_REDIS_SERVERS', 'rds.huitong.cc' );
+	defined('CACHE_REDIS_DEBUG') || define('CACHE_REDIS_DEBUG', _PS_DEBUG );
+
+	// xdebug
+	ini_set('xdebug.collect_vars', 'on');
+	ini_set('xdebug.collect_params', '4');
+	ini_set('xdebug.dump_globals', 'on');
+	ini_set('xdebug.dump.SERVER', 'REQUEST_URI');
+	ini_set('xdebug.show_local_vars', 'on');
+	ini_set('xdebug.profiler_enable', 'on');
+	ini_set('xdebug.profiler_output_dir', 'd:/wamp/tmp');
+	ini_set('xdebug.trace_output_dir', 'd:/wamp/tmp');
+	ini_set('xdebug.auto_trace', 'on');
+	ini_set('xdebug.collect_return', 'on');
+
+
+	define('ENABLE_BENCHMARK', TRUE );
+	
+	
+
+    // lucene service
+}
+else
+{
+	//error_reporting(0);
+	
+	
+	define('LIB_ROOT', dirname(__FILE__) .'/../library/' );
+	define('WEB_ROOT',	dirname(__FILE__) .'/../web/');
+	define('SKIN_ROOT',	dirname(__FILE__) .'/../skins/');
+	define('STO_ROOT',	dirname(__FILE__) .'/../static/');	
+    define('STO_CSS_ROOT', dirname(__FILE__) .'/../static/sto/c/');
+    define('STO_IMG_ROOT', dirname(__FILE__) .'/../static/sto/i/');
+    define('STO_JS_ROOT', dirname(__FILE__) .'/../static/sto/j/');
+	defined('CONF_ROOT') || define('CONF_ROOT',  dirname(__FILE__) . '/' );
+	define('LOG_ROOT', dirname(__FILE__) .'/../logs/' );
+	define('DOC_ROOT',	WEB_ROOT.'www/'); // 这里的是全部可以访问的，直接的document_root
+	define('TMP_ROOT',	dirname(__FILE__) .'/../tmp/');//tmp缓存文件夹
+	defined('LOG_LEVEL') || define('LOG_LEVEL', 7 ); // 3=err,4=warn,5=notice,6=info,7=debug
+	define('SP_DOMAIN_SUFFIX', 'huitong.cc' );	// 域名后辍
+	define('SP_STATIC_HOST', 'm.huitong.cc' );	// 静态资源服务器域名
+	define('SP_UPLOAD_HOST', 'img.i.huitong.com' );	// 可以上传的服务器名称 storage host
+	define('CACHE_REDIS_SERVERS', 'rds.huitong.cc' );
+
+	define('CACHE_MEMCACHE_SERVERS', '192.168.100.23:11211' );	// Memcached Servers, format: 'HOST:PORT,HOST1:PORT,HOST2'
+}
+
+// base
+
+defined('RESPONSE_CHARSET') || define('RESPONSE_CHARSET', 'utf-8' );
+
+// cookie
+define('COOKIE_DOMAIN_SUPPORT', '.huitong.com .huitong.cc' );
+define('COOKIE_SALT_LOGIN', 'ma3efdks0aflpdasf#fjs(sdJDL!!BYHJR.com');
+
+date_default_timezone_set('PRC'); //时区 
+// db dsn
+// see also da.conf.inc.php
+
+// writable dir
+define('CACHE_ROOT', WEB_ROOT.'cache/' );	//
+define('DATA_ROOT', WEB_ROOT.'data/' );	//
+define('UPLOAD_ROOT', WEB_ROOT.'uploads/' );	//
+define('SP_IMAGE_SUFFIX', 'huitong.cc' ); // image host suffix
+define('IMG_DOMAIN_POOL_COUNT', 4 ); // 图片域名前缀池数
+
+// urls
+define('SP_URL_STO', 	'http://'.SP_STATIC_HOST.'/' );
+define('SP_URL_CSS', 	'http://'.SP_STATIC_HOST.'/css/' );
+define('SP_URL_IMG', 	'http://'.SP_STATIC_HOST.'/img/' );
+define('SP_URL_JS', 	'http://'.SP_STATIC_HOST.'/js/' );
+define('SP_URL_HOME', 'http://www.'.SP_DOMAIN_SUFFIX.'/' );
+define('SP_URL_UPLOAD', 'http://img.eventown.cn/' );
+
+
+// view / smarty
+define('SMARTY_DIR',	LIB_ROOT .'third/smarty/');
+define('VIEW_COMPILE_DIR', CACHE_ROOT . 'view/tpl_c' );
+define('VIEW_CACHE_DIR', CACHE_ROOT . 'view/cache' );
+//define('VIEW_CACHE_LIFETIME', 1440 );
+//define('VIEW_CACHE_ENABLE', !_PS_DEBUG );
+define('VIEW_CONFIG_DIR', CONF_ROOT .'view/' );
+define('VIEW_SKINS_ROOT', SKIN_ROOT );
+//defined('VIEW_TEMPLATE_DIR') || define('VIEW_TEMPLATE_DIR', SKIN_ROOT . 'default/' );
+//define('VIEW_SKINS_AVAILABLE', 'default' ); // default skin1 skin2
+define('VIEW_SKIN_DEFAULT', 'default' );
+define('VIEW_SKIN_CURRENT', 'default' );
+
+// PHPExcel
+define('PHPEXCEL_ROOT', LIB_ROOT . 'third/PHPExcel-lite/');
+
+// jpgraph
+define('JPGRAPH_DIR',	LIB_ROOT .'third/Jpgraph-1.27/');
+
+
+
+// for wanlitong
+define('WANLITONG_ENABLE', TRUE );
+
+// account src_id
+define('SP_ACCOUNT_SRC_LOCAL', 0); // local
+define('SP_ACCOUNT_SRC_WANLT', 1); // wanglitong
+define('SP_ACCOUNT_SRC_WEIBO', 2); // sina weibo
+
+
+// Queue Service
+define('SP_QS_HOST', 'sqs.huitong.cc' );
+define('SP_QS_PORT', 1218 );
+
+//article
+define('OFFSET',10);//分页条数
+
+
+define("SMS_EVTH", 1);
+define("SMS_EVTL", 2);
+define("SMS_HTH", 3);
+define("SMS_HTL", 4);
+define("SMS_URL",'http://local.pay.eventown.com.cn:81/?mod=sms&ct=index');

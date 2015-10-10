@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>首页</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{%$SP_URL_STO%}css/main.css">
+    <script type="text/javascript">
+    	var SP_URL_STO = '{%$SP_URL_STO%}';
+    </script>
+    <script src="{%$SP_URL_STO%}vendor/require/require.js" data-main="{%$SP_URL_STO%}main.js"></script>
+    <style>
+    .ms-controller {
+        visibility: hidden;
+    }
+    </style>
+</head>
+
+<body ms-controller="indexPage">
+    <div class="header">
+        <div class="logo"><img src="{%$SP_URL_STO%}img/logo.png" alt=""></div>
+        <div class="menu">
+            <a href="#"  ms-click="showlogin" class="btn success">登录</a>
+            <a href="#"  ms-click="showreg" class="btn">注册</a>
+        </div>
+    </div>
+    <div class="slider">
+    </div>
+    <!--登录-->
+    <div class="border-style" id="loginArea" ms-visible="loginIsShow" ms-controller="login">
+        <div class="title"><img src="{%$SP_URL_STO%}img/login_tit.jpg" alt=""></div>
+        <div>{{errorTxt}}</div>
+        <div class="form" >
+            <form action=""  ms-widget="validation"  novalidate="novalidate">
+                <div class="form-group ">
+                    <input class="form-control " type="text" placeholder="ID/手机/邮箱" ms-duplex-required="username"  data-duplex-event="change"/>
+                </div>
+                <div class="form-group ">
+                    <input class="form-control " type="password" placeholder="密码" ms-duplex-required="password" data-duplex-event="change" />
+                </div>
+                <div class="form-group ">
+                    <label >
+                        <input type="checkbox"> 记住密码</label>
+                </div>
+                <div class="form-group ">
+                    <button class="btn success pull-center">登录</button>
+                </div>
+                <div class="form-group "><a href="">找回密码</a></div>
+            </form>
+        </div>
+    </div>
+    <!--登录end-->
+    <!--注册-->
+        <div class="border-style" id="regArea" ms-visible="regIsShow"  >
+        <div class="title"><img src="img/reg_tit.jpg" alt=""></div>
+        <div class="form" ms-controller="reg">
+            <form action=""  novalidate="novalidate">
+                <div class="form-group ">
+                    <input class="form-control " type="text" placeholder="手机" />
+                </div>
+                <div class="form-group ">
+                    <input class="form-control " type="text" placeholder="邮箱" />
+                </div>
+                <div class="form-group ">
+                    <input class="form-control " type="password" placeholder="密码" />
+                </div>
+                   <div class="form-group ">
+                    <input class="form-control " type="password" placeholder="确认密码" />
+                </div>
+          
+                <div class="form-group ">
+                    <a href="#" class="btn success pull-center" ms-click="submit">注册</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--注册end-->
+
+        <!--找回密码-->
+<!--         <div class="border-style" id="regArea">
+        <div class="title"><img src="img/findpwd_tit.jpg" alt=""></div>
+        <ul><li>手机找回</li>
+
+            <li>邮箱找回</li>
+
+        </ul>
+        <div class="form">
+            <form action="">
+                <div class="form-group ">
+                    <input class="form-control " type="text" placeholder="手机" />
+                </div>
+                <div class="form-group ">
+                    <input class="form-control " type="text" placeholder="邮箱" />
+                </div>
+                <div class="form-group ">
+                    <input class="form-control " type="password" placeholder="密码" />
+                </div>
+                   <div class="form-group ">
+                    <input class="form-control " type="password" placeholder="确认密码" />
+                </div>
+                <div class="form-group ">
+                    <button class="btn success">注册</button>
+                </div>
+            </form>
+        </div>
+    </div> -->
+    <!--找回密码-->
+
+
+</body>
+
+</html>

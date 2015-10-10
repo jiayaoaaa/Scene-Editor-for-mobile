@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>show</title>
+    <meta name="description" content="" />
+    <meta name="author" content="yaojia" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="{%$SP_URL_HOME%}css/show.css">
+    <link rel="stylesheet" href="{%$SP_URL_HOME%}css/animate.lib.css">
+    <link rel="stylesheet" href="{%$SP_URL_HOME%}vendor/swiper/css/swiper.css">
+
+    <script>
+  if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+    var version = parseFloat(RegExp.$1);
+    if(version>2.3){
+      var phoneScale = parseInt(window.screen.width)/414;
+      document.write('<meta name="viewport" content="width=414, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+    }else{
+      document.write('<meta name="viewport" content="width=414, target-densitydpi=device-dpi">');
+    }
+  }else{
+    document.write('<meta name="viewport" content="width=414, user-scalable=no, target-densitydpi=device-dpi">');
+  }
+</script>
+
+    <script>
+
+    var SP_URL_STO = '{%$SP_URL_HOME%}',SP_URL_STO = '{%$SP_URL_FILE%}';
+    var SP_LETTER_ID = '{%$letter.id%}' || 30
+    </script>
+    <script src="{%$SP_URL_HOME%}vendor/require/require.js" data-main="{%$SP_URL_HOME%}show.js"></script>
+    </script>
+</head>
+
+<body >
+    <div id="container" ms-controller="main" class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" data-repeat-rendered="rendered" ms-repeat-page="pageItemArr" style="background-size:cover" ms-css-background-color="page.pagebgColor" ms-css-background-image="'url(' + page.pagebgImage + ')' ">
+                <div class="elements" ms-repeat-elment="page.comInsList" ms-css-left="{{elment.left}}px" ms-css-top="{{elment.top}}px" ms-css-width="{{elment.width}}px" ms-css-height="{{elment.height}}px" 
+                ms-attr-animation="{{elment.animationName}} {{elment.animationDuration}}s ease {{elment.animationDelay}}s none" 
+                ms-attr-delay={{elment.animationDelay}}
+                ms-css-z-index={{elment.zIndex}}
+
+                ms-css-opacity="{{elment.opacity/100}}" ms-css-background-color="{{elment.backgroundColor}}"   >
+                    <img class="singleimg" ms-if="elment.type=='image'" ms-src="elment.content" />
+                    <div ms-if="elment.type=='text'" class="singletxt" ms-css-font-size="{{elment.fontSize}}" ms-css-color="{{elment.fontColor}}" ms-css-line-height="{{elment.lineHeight}}" ms-css-text-align="{{elment.textAlign}}">
+                        {{elment.content}}
+                    </div>
+                    <div ms-if="elment.type=='form'" class="singleform">
+                        <div class="form-group " ms-each="elment.formElment">
+                            <div class="clearfix form-line">
+                                {{el.label}}
+                                <input ms-if="el.type=='text'" ms-attr-name="filed{{$index}}" ms-attr-type="{{el.type}}" ms-attr-placeholder="{{el.label}}">
+                                <label ms-if="el.type=='radio'">
+                                    <input ms-attr-name="{{el.radioname}}" ms-attr-type="{{el.type}}"> {{el.text1}}</label>
+                                <label ms-if="el.type=='radio'">
+                                    <input ms-attr-name="{{el.radioname}}" ms-attr-type="{{el.type}}"> {{el.text2}}</label>
+                            </div>
+                        </div>
+                        <button>提交</button>
+                    </div>
+                </div>
+            </div>
+            <div id="music"></div>
+        </div>
+</body>
+
+</html>

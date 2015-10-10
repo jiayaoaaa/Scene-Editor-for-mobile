@@ -1,0 +1,81 @@
+{%extends file="../layout.html"%} 
+{%block name="title" append%}
+个人信息
+{%/block%}
+
+{%block name="header-css"%}
+<link rel="stylesheet" href="{%$SP_URL_CSS%}notify.css"  />
+<link href="{%$SP_URL_CSS%}account.css" rel="stylesheet" />
+<!--[if lte IE 7]>
+	<link rel="stylesheet" type="text/css" href="{%$SP_URL_CSS%}ie.css">
+<![endif]-->
+<link rel="stylesheet" href="{%$SP_URL_CSS%}bootstrap-select.min.css">
+{%/block%}
+{%block name="header-script" %}
+<script src="{%$SP_URL_STO%}js/common.js"></script>
+<script>
+var SP_URL_UPLOAD = '{%$SP_URL_UPLOAD%}';
+var SP_POLICY = "{%$uploadInfo.policy%}", SP_SIGNATURE = "{%$uploadInfo.sign%}";
+</script>
+<script src="{%$SP_URL_JS%}bootstrap.min.js"></script>
+<script type="text/javascript" src="{%$SP_URL_JS%}bootstrap-select.min.js"></script>
+<script src="{%$SP_URL_STO%}vendor/notify/notify.js"></script>
+<script src="{%$SP_URL_JS%}phoneAuth.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#auth-phone").click(function(){
+            authCode.sendMessage('auth-phone',$('#mobile').val(),'phone');
+        })
+        $("#phone-submit").click(function(){
+            authCode.authCode($('#mobile').val(),$('#code').val(),'phone');
+        })
+        
+    })
+</script>
+{%/block%}
+
+{%block name="page-content" %}
+<div class="ht-user-path">&nbsp;&lt;&nbsp;<a href="/active/index.html">返回我的活动</a></div>
+<div class="ht-account">
+	<div class="ht-account-left ht-pull-left">
+	{%include file="./nav.html"%}
+	</div>
+	<div class="ht-account-right ht-pull-left">
+		<div class="ht-account-right-wrapper">
+			<h2>手机验证</h2>
+            <p class="authline"></p>
+			<div class="ht-account-form" style="margin-top: 11px;border-top:none;">
+				<form id="f1" name="f1">
+					<div class="ht-account-form-left ht-pull-left" style="width:670px;">
+						<div class="form-group">
+							<label>手机</label>
+                            <input type="text" id="mobile" name="mobile" class="form-control" style="width:400px;" value="{%$user['mobile']%}" disabled="disabled">
+						</div>
+                        
+                        <div class="form-group">
+                            <div style="width:400px;"><label>验证码</label></div>
+                            <div>
+                                <div style="width:400px;float: left;">
+                                    <input type="text" id="code" name="code" class="form-control" value="" style="width:260px;float:left;">
+                                    <button type="button" class="btn ht-btn-primary" id="auth-phone" style="float:right;">获取验证码</button>
+                                    <div class="ht-clear"></div>
+                                </div>
+                                <label style="float: left;width:260px;padding-left:6px;" id="message"></label>
+                                <div class="ht-clear"></div>
+                            </div>
+						</div>
+                        <div class="form-group" style="padding-top:20px;">
+                            <button type="button" class="ht-user-btn-blue" id="phone-submit">提&nbsp;&nbsp;交</button>
+                        </div>
+					</div>
+					<div class="ht-clear"></div>
+				</form>
+			</div>
+		</div>
+	</div><div class="ht-clearL"></div>
+</div>
+
+{%/block%}
+{%block name="footer-script"%}
+
+{%/block%}

@@ -1,0 +1,618 @@
+/* 初始化CSS */
+*{
+	margin:0;
+	padding:0;
+}
+html,body,#root{
+	overflow:hidden;
+	width: 100%;
+	height: 100%
+}
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{
+	margin: 0;
+}
+body {
+	background: #fff;
+	color: #333;
+	font: 12px/1.5 "微软雅黑", Arial, sans-serif;
+}
+img,button {
+	border: 0;
+}
+ul, ol {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+input, img, select {
+	vertical-align: middle;
+}
+a {
+	text-decoration: none;
+}
+a{
+	color: #333;
+}
+a:hover {
+	color: #c00;
+}
+em, i {
+	font-style: normal;
+}
+/* 全局样式 */
+.fix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+	font-size: 0;
+}
+.fix {
+*zoom:1;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.btn-blue{
+	padding:10px 30px;
+	font-size:16px;
+	color:#fff;
+	background: #12aaeb;
+	display:inline-block;
+	border-radius:40px;
+}
+.editor-content{
+	clear: both;
+	position: relative;
+	height:100%;
+	margin-top:66px;
+}
+#pageTree{
+	float: left;
+	width: 150px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	background:#eee;
+}
+
+#pageTree li{
+
+	width: 85%;
+	height: 140px;
+	background: #fff;
+	border: 1px solid #ddd;
+	margin: 10px 10px 15px;
+	cursor: pointer;
+	position: relative;
+
+}
+
+.up{
+	background: url('../img/up.png');
+	width: 13px;
+	height: 20px;
+	position: absolute;
+	left: 9px;
+	top: 10px
+}
+
+.down{
+	background: url('../img/down.png');
+	width: 13px;
+	height: 20px;
+	position: absolute;
+    left: 9px;
+	bottom:5px
+}
+.pageNum{
+	font-size: 20px;
+	position: absolute;
+	left: 0px;
+	top: 46%;
+	color: #666;
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+.close{
+	background: url('../img/close.png') #fff;
+	border-radius: 50%;
+	background-size:100%;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: -10px;
+	top: -10px;
+	opacity: 0
+
+}
+#pageTree ul{
+	height: 95%;
+	overflow-y: auto;
+}
+#pageTree li:hover {
+	background: #333
+}
+
+
+#pageTree li:hover .close{
+	opacity: 1
+}
+
+#pageTree li:active,#pageTree li.active{
+	background-color: #12aaeb;
+	border: 1px dotted #ccc;
+	box-shadow: 0 0 5px #12aaeb
+}
+
+#pageTree .inner{
+	background: #fff;
+	width: 100%;
+	height: 100%
+}
+
+#pageTree #add{
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	padding: 0 5px 5px;
+	bottom: 0
+}
+
+#sidebar{
+
+	float: right;
+	width: 350px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	overflow-y:auto;
+	background:#fff;
+	padding: 0 30px;
+
+
+
+}
+
+#editorContent{
+	padding: 0 410px 0 150px;
+		height: 100%;
+		background: #444;
+		overflow: hidden;
+
+}
+
+
+
+.m-editor{
+	width: 384px;
+	height: 624px;
+	background: #fff;
+	border: 1px solid #ddd;
+	margin: 20px auto 0;
+	position: relative;
+	box-shadow: 0 0 4px 1px green,0 1px 10px 1px #2d95f0;
+	background-size: cover;
+	background-position: center center
+}
+
+.elements{
+	position:absolute;
+	display: inline-block;
+	cursor:pointer; 
+}
+
+.singleimg{
+	display: block;
+	width: 100%;
+}
+
+.selected{
+	box-shadow: 0 0 6px #f00;
+
+}
+
+
+#toolbar{
+	margin: 10px;
+	text-emphasis: close;
+	text-align: center;
+}
+
+.effect-list li{
+    border: 1px solid #d9d9d9;
+    float: left;
+    font-size: 12px;
+    height: 48px;
+    line-height: 50px;
+    margin: 0 0 30px 27px;
+    text-align: center;
+    width: 49px;
+    cursor: pointer;
+}
+.effect-list li:hover i, .effect-list li.on i{
+	width: 11px;
+	height: 11px;
+	display:block;
+	position: absolute;
+	margin:0 0 0 38px;
+	background: url(../img/icon-r.jpg);
+}
+.effect-list li:hover, .effect-list li.on{
+	border: 1px solid #12aaeb;
+}
+.effect-list li div{
+	position: absolute;
+    margin: 50px 0 0 0;
+    width: 48px;
+    height: 20px;
+    line-height: 20px;
+	color:#acacac;
+}
+.effect-list li:hover div,.effect-list li.on div{
+	color:#12aaeb;
+}
+
+.u-Layer-ctrl{
+    position: absolute;
+    width: 100px;
+    height: 200px;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 1px 2px 3px #333;
+    z-index: 999
+}
+
+.u-Layer-ctrl li {
+    line-height: 1.7;
+    cursor:pointer;
+    padding: 5px;
+}
+.u-Layer-ctrl li:hover{
+    background: #eee
+}
+/*uploader */
+
+#insertImage {
+    background: white none repeat scroll 0 0;
+    border: 2px dashed #0087f7;
+    border-radius: 5px;
+    width: 800px;
+    position: absolute;
+    left: 0;
+    top: 200px;
+    right: 0;
+    margin: 0 auto;
+    box-shadow: 1px 1px 3px #ddd;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+#insertImage img{
+    border-radius: 5px
+}
+
+#insertImage .action{
+}
+
+.singleform{
+    
+}
+.top-box{
+	height: 66px;
+	width:100%;
+	background:#2a3239 ;
+	position: fixed;
+	z-index:99;
+	margin-top: 0;
+	text-align: center;
+	font-size:16px;
+}
+.top-box-c{
+	margin:0 410px 0 150px;
+}
+.top-box a{
+	width:85px;
+	height:66px;
+	display:inline-block;
+}
+.top-box i{
+	width:31px;
+	height:27px;
+	display:block;
+	margin:5px auto 5px;
+}
+.top-box b{
+	color:#aeb2bd;
+	display:block;
+}
+.yqh-icon01{
+	background: url(../img/yqh-icon01.png) center no-repeat ;
+}
+.yqh-icon02{
+	background: url(../img/yqh-icon02.png) center no-repeat ;
+}
+.yqh-icon03{
+	background: url(../img/yqh-icon05.png) center no-repeat ;
+}
+.yqh-icon04{
+	background: url(../img/yqh-icon06.png) center no-repeat ;
+}
+.yqh-icon05{
+	background: url(../img/yqh-icon07.png) center no-repeat ;
+}
+.yqh-icon06{
+	background: url(../img/yqh-icon08.png) center no-repeat ;
+}
+.yqh-icon07{
+	background: url(../img/yqh-icon03.png) center no-repeat ;
+}
+.top-box .btn-blue{
+	margin:14px 10px 0 0;
+}
+
+.setting-box h4, .text-box h4{
+	font-size:14px;
+	font-weight:bold;
+	color:#727171;
+	padding:10px 0 5px;
+}
+.setting-box hr,.text-box hr{
+	border:0;
+	border-bottom:1px dashed #dbdee1;
+}
+div.padding5{
+	padding:5px 0;
+}
+.padding5 li{
+	padding:5px 0;
+}
+.padding5 input, div.padding5 input{
+	margin-right: 1em;
+}
+.padding5 label, div.padding5 label{
+	margin-right: 2em;
+}
+.text-area{
+	width:100%;
+	padding:5px;
+	height:60px;
+	line-height:20px;
+	color:#666;
+}
+.font-area{
+	padding:10px 0;
+}
+.input-style{
+	padding:5px 0;
+}
+.input-style input{
+	display:inline-block;
+	width:50px;
+	line-height:22px;
+	border:1px solid #bebdbd ;
+	text-align:center;
+}
+.oni-slider.oni-slider-horizontal{
+	margin-bottom:10px;
+}
+.btn-blue01, .singleform button{
+  padding: 5px 30px;
+  font-size: 16px;
+  color: #fff;
+  background: #12aaeb;
+  display: inline-block;
+  border-radius: 5px;
+  margin-right:10px;
+  cursor:pointer;
+}
+.singleform{
+	padding:15px;
+}
+.singleform .form-line{
+	padding:5px 0;
+}
+.singleform input[type="text"]{
+	display:inline-block;
+	line-height:26px;
+	border:1px solid #bebdbd ;
+	text-align:center;
+	width:100%;
+	text-indent:3em;
+	border-radius:3px;
+}
+.singleform input[type="radio"]{
+	margin:10px 0;
+}
+.singleform button{
+	display:block;
+	margin:20px auto ;
+}
+.form-list{
+	padding-bottom:15px;
+}
+.form-list li{
+	padding:2px 0;
+	color:#999;
+}
+.singleform .form-line i{
+	color:#666;
+	position: absolute;;
+	margin:3px 0 0 5px;
+}
+
+.dz-progress{
+	background: #ccc;
+	height: 10px;
+	font-size: 9px;
+	width:100%;
+	overflow: hidden;
+	color: #fff;
+	margin-top: 15px;
+}
+.dz-upload{
+	background-color: yellowgreen;
+	height: 10px;
+	display: inline-block;
+	transition:all 0.2s ;
+}
+.effect-list li:nth-child(1){
+	background:url(../img/noeffect.jpg);
+}
+<<<<<<< .mine
+.effect-list li:hover:nth-child(1),.effect-list li:nth-child(1).on{
+=======
+.effect-list li:hover:nth-child(1), .effect-list li:nth-child(1).on{
+>>>>>>> .r1200
+	background:url(../img/noeffect-on.jpg);
+}
+.effect-list li:nth-child(2){
+	background:url(../img/fadeInNormal.jpg);
+}
+<<<<<<< .mine
+.effect-list li:hover:nth-child(2),.effect-list li:nth-child(2).on{
+=======
+.effect-list li:hover:nth-child(2), .effect-list li:nth-child(2).on{
+>>>>>>> .r1200
+	background:url(../img/fadeInNormal-on.jpg);
+}
+.effect-list li:nth-child(3){
+	background:url(../img/fadeIn.jpg);
+}
+.effect-list li:hover:nth-child(3), .effect-list li:nth-child(3).on{
+	background:url(../img/fadeIn-on.jpg);
+}
+.effect-list li:nth-child(4){
+	background:url(../img/expandOpen.jpg);
+}
+.effect-list li:hover:nth-child(4), .effect-list li:nth-child(4).on{
+	background:url(../img/expandOpen-on.jpg);
+}
+.effect-list li:nth-child(5){
+	background:url(../img/zoomIn.jpg);
+}
+.effect-list li:hover:nth-child(5), .effect-list li:nth-child(5).on{
+	background:url(../img/zoomIn-on.jpg);
+}
+.effect-list li:nth-child(6){
+	background:url(../img/zoomInDown.jpg);
+}
+.effect-list li:hover:nth-child(6), .effect-list li:nth-child(6).on{
+	background:url(../img/zoomInDown-on.jpg);
+}
+.effect-list li:nth-child(7){
+	background:url(../img/rotateInDownLeft.jpg);
+}
+.effect-list li:hover:nth-child(7), .effect-list li:nth-child(7).on{
+	background:url(../img/rotateInDownLeft-on.jpg);
+}
+.effect-list li:nth-child(8){
+	background:url(../img/rotateInDownRight.jpg);
+}
+.effect-list li:hover:nth-child(8), .effect-list li:nth-child(8).on{
+	background:url(../img/rotateInDownRight-on.jpg);
+}
+.effect-list li:nth-child(9){
+	background:url(../img/moveRight.jpg);
+}
+.effect-list li:hover:nth-child(9), .effect-list li:nth-child(9).on{
+	background:url(../img/moveRight-on.jpg);
+}
+.effect-list li:nth-child(10){
+	background:url(../img/moveLeft.jpg);
+}
+.effect-list li:hover:nth-child(10), .effect-list li:nth-child(10).on{
+	background:url(../img/moveLeft-on.jpg);
+}
+.effect-list li:nth-child(11){
+	background:url(../img/moveUp.jpg);
+}
+.effect-list li:hover:nth-child(11), .effect-list li:nth-child(11).on{
+	background:url(../img/moveUp-on.jpg);
+}
+.effect-list li:nth-child(12){
+	background:url(../img/moveDown.jpg);
+}
+.effect-list li:hover:nth-child(12), .effect-list li:nth-child(12).on{
+	background:url(../img/moveDown-on.jpg);
+}
+.effect-list li:nth-child(13){
+	background:url(../img/slideRight.jpg);
+}
+.effect-list li:hover:nth-child(13), .effect-list li:nth-child(13).on{
+	background:url(../img/slideRight-on.jpg);
+}
+.effect-list li:nth-child(14){
+	background:url(../img/slideLeft.jpg);
+}
+.effect-list li:hover:nth-child(14), .effect-list li:nth-child(14).on{
+	background:url(../img/slideLeft-on.jpg);
+}
+.effect-list li:nth-child(15){
+	background:url(../img/slideUp.jpg);
+}
+.effect-list li:hover:nth-child(15), .effect-list li:nth-child(15).on{
+	background:url(../img/slideUp-on.jpg);
+}
+.effect-list li:nth-child(16){
+	background:url(../img/slideDown.jpg);
+}
+.effect-list li:hover:nth-child(16), .effect-list li:nth-child(16).on{
+	background:url(../img/slideDown-on.jpg);
+}
+.effect-list li:nth-child(17){
+	background:url(../img/lightSpeedIn.jpg);
+}
+.effect-list li:hover:nth-child(17), .effect-list li:nth-child(17).on{
+	background:url(../img/lightSpeedIn-on.jpg);
+}
+.effect-list li:nth-child(18){
+	background:url(../img/flipInY.jpg);
+}
+.effect-list li:hover:nth-child(18), .effect-list li:nth-child(18).on{
+	background:url(../img/flipInY-on.jpg);
+}
+.effect-list li:nth-child(19){
+	background:url(../img/flipInX.jpg);
+}
+.effect-list li:hover:nth-child(19), .effect-list li:nth-child(19).on{
+	background:url(../img/flipInX-on.jpg);
+}
+.effect-list li:nth-child(20){
+	background:url(../img/rotateIn.jpg);
+}
+.effect-list li:hover:nth-child(20), .effect-list li:nth-child(20).on{
+	background:url(../img/rotateIn-on.jpg);
+}
+.effect-list li:nth-child(21){
+	background:url(../img/stretchRight.jpg);
+}
+.effect-list li:hover:nth-child(21), .effect-list li:nth-child(21).on{
+	background:url(../img/stretchRight-on.jpg);
+}
+.effect-list li:nth-child(22){
+	background:url(../img/stretchLeft.jpg);
+}
+.effect-list li:hover:nth-child(22), .effect-list li:nth-child(22).on{
+	background:url(../img/stretchLeft-on.jpg);
+}
+.effect-list li:nth-child(23){
+	background:url(../img/pullUp.jpg);
+}
+.effect-list li:hover:nth-child(23), .effect-list li:nth-child(23).on{
+	background:url(../img/pullUp-on.jpg);
+}
+.effect-list li:nth-child(24){
+	background:url(../img/pullDown.jpg);
+}
+.effect-list li:hover:nth-child(24), .effect-list li:nth-child(24).on{
+	background:url(../img/pullDown-on.jpg);
+}

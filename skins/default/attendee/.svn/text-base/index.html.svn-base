@@ -1,0 +1,192 @@
+{%extends file="../letter_layout.html"%} 
+{%block name="title" append%}
+我的参会人
+{%/block%}
+
+{%block name="header-css"%}
+<link rel="stylesheet" href="{%$SP_URL_CSS%}notify.css">
+<link href="{%$SP_URL_CSS%}attendee.css" rel="stylesheet"/>
+<!--[if lt IE 8]>
+	<link rel="stylesheet" type="text/css" href="{%$SP_URL_CSS%}ie.css">
+<![endif]-->
+<style type="text/css">
+	.webuploader-pick{
+		margin-left: 15px;
+	}	
+</style>
+{%/block%}
+
+{%block name="header-script" %}
+<!--[if lt IE 9]>
+	<script type="text/javascript" src="{%$SP_URL_JS%}json2.js"></script>
+<![endif]-->
+<script type="text/javascript" src="{%$SP_URL_JS%}SysUtil.js"></script>
+<script type="text/javascript">
+    var tableSet = JSON.parse('{%$headerSet%}');
+    var activeId = {%$activeId%};
+    if(false == tableSet){
+        var tableSet = {
+            0:{"isShow":"1","title":"姓名","field":"name"},
+            1:{"isShow":"1","title":"手机","field":"phone"},
+            2:{"isShow":"0","title":"邮箱","field":"email"},
+            3:{"isShow":"0","title":"职位","field":"position"},
+            4:{"isShow":"0","title":"公司名称","field":"company"},
+            5:{"isShow":"0","title":"公司地址","field":"address"},
+            6:{"isShow":"0","title":"性别","field":"sex"}
+        };
+    }
+    var flag = "{%$flag%}";
+    if(flag){
+        Notify.log("文件上传成功");
+    }
+</script>
+<script src="{%$SP_URL_STO%}js/loader.js"></script>
+<script src="{%$SP_URL_STO%}js/common.js"></script>
+<script src="{%$SP_URL_STO%}js/bootstrap.min.js"></script>
+<script src="{%$SP_URL_STO%}vendor/notify/notify.js"></script>
+{%/block%}
+
+{%block name="page-crumb"%}
+<a href="/active/index.html">我的活动</a>  > 我的参会人
+{%/block%}
+
+
+{%block name="page-content" %}
+<div class="attendee_box">
+    <div class="attendee_header">
+        <!--<p class=" btn-green">
+            <span class="btn-left"></span>
+            <span class="btn-mid">添加参会人</span>
+            <span class="btn-right"></span>
+        </p>
+        <p class="btn btn-blue">
+            <span class="btn-left"></span>
+            <span class="btn-mid">导入参会人</span>
+            <span class="btn-right"></span>
+        </p>-->
+        <div class="left" style="padding-right:5px">
+            <button type="button" class="btn ht-btn-blue" id="add-attendee" >添加参会人</button>
+            <button type="button" class="btn ht-btn-blue" style="*+margin-left: 8px;" id="import-attendee">导入参会人</button>
+        </div>
+        <div class="dropdown active left">
+            <a id="drop4" class="btn ht-btn-blue" style="*+font-size: 16px!important;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                操作  <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDrop1">
+                <li class=""><a href="javascript:void(0)" action="set-attendee" action-type="signIn">设为已签到</a></li>
+                <li class=""><a href="javascript:void(0)" action="set-attendee" action-type="signOut">设为未签到</a></li>
+                <li role="separator" class="divider"></li>
+                <li class=""><a href="javascript:void(0)" action="set-attendee" action-type="delete">删除</a></li>
+            </ul>
+        </div>
+        <button type="button" class="btn ht-btn-green" style="float:right;" id="table-set">表单设置</button>
+    </div>
+    <div class="attendee_content">
+        <table class="table table-hover table-bordered" id="attendee-table">
+            <tr >
+                <th width="12">
+                    <label>
+                        <input type="checkbox" id="checkAll">
+                    </label>
+                </th>
+{%foreach from=$header item=list%}
+                <th>{%$list%}</th>
+{%/foreach%}
+				<th>签到</th>
+				<th>报名状态</th>
+                <th>操作</th>
+            </tr>
+			{%foreach from=$data item=val%}
+			            <tr action="select" data-id="{%$val['id']%}">
+			                <td action="check">
+			                    <label>
+			                        <input type="checkbox" class="HTDataSelect" />
+			                    </label>
+			                </td>
+						    {%foreach from=$val item=v key=key%}
+						        {%if ('id'!=$key && 'status' != $key && 'checkStatus' != $key)%}
+						                <td>{%$v%}</td>
+						        {%/if%}
+						    {%/foreach%}  
+			    			<td>{%if $val['status'] == 0%}未签到{%else%}<b style="color: red;">已签到</b>{%/if%}</td>     
+			    			<td>{%if $val['checkStatus'] == 0%}审核中{%elseif $val['checkStatus'] == 1%}<b style="color: red;">成功</b>{%else%}未通过{%/if%}</td>     
+			                <td>
+			                	{%if $val['status'] == 0 && $val['checkStatus'] == 0%}<button onclick="sendmsg({%$val['id']%},{%$activeId%},'{%$val['phone']%}',this)">发送电子票</button><button onclick="refuse({%$val['id']%},{%$activeId%},this)">拒绝</button>{%elseif $val['status'] == 0 && $val['checkStatus'] == 1%}<button onclick="sendmsg({%$val['id']%},{%$activeId%},'{%$val['phone']%}',this)">重发电子票</button>{%/if%}
+			                </td>
+			            </tr>
+			{%/foreach%}
+        </table>
+        {%$page%}
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" id="modal-dialog">
+        <div class="modal-content" id="modal-content" >
+            <div class="attend-model-header">
+                <p class="attend-model-header-title">添加参会人</p>
+            </div>
+            
+            <div class="attend-model-footer">
+                <button type="button" class="btn ht-btn-blue" style="float:left;width:200px;" data-dismiss="modal">保存</button>
+                <button type="button" class="btn ht-btn-gray" style="float:right;width:200px;">取消</button>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalFile" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document" id="modal-dialog">
+	    <div class="modal-content">
+	        	<div class="attend-model-header">
+	            	<p class="attend-model-header-title">导入参会人名单</p>
+	       		</div>
+	            <div class="attend-model-content" style="width:415px;text-align:left;">
+	                <div id="uploader" class="wu-example">
+		                <div  style="margin-top:10px;height:40px;">
+		        			<input type="text" name="file" id="file-name" class="form-control left" style="width:310px;height:40px;*+width:270px;*+height:25px;margin-right: 10px;" readonly value="请选择CSV或EXCEL文件" />
+		        			<a href="javascript:void(0)"  class="btn ht-btn-green  ht-create-btn-80 " style="width: 80px;height: 40px;padding: 0px!important; text-align:center">
+								<div style="position:relative;">
+									<span style="position:absolute;left:0;top:0;line-height: 40px; text-align:center" class="ht-create-btn-80">选择文件</span>
+                                    <span  class="img-responsive center-block uploadButton" id="uploadButton"></span>
+                                    <div>
+                                        <div id="divStatus" style="display: none;"></div>
+                                        <input id="btnCancel" type="button" style="display: none" onclick="swfu.cancelQueue();"/>
+                                    </div>
+								</div>
+                            </a>
+				    	 	<div style="height:0px;font-size: 0px;clear: both;" ></div>
+		        			<div class="clear"></div>
+		        		</div>
+				    	<div class="item" id="item"></div>
+			  		</div>
+			  	  <div id="swfileProcess" style="display: none;"> 
+					    <div id="swfileProcessSize" style="width: 0%;"> 
+					        <span id="swfileProcessTxt"></span> 
+					    </div> 
+				  </div> 
+	              请按模板格式添加人员名单，<a href="/attendee/export.html" style="color:#337ab7">下载参会人名单模板</a>
+	       	   </div>
+	            <div class="attend-model-footer">
+	                <button type="button" class="btn left ht-btn-blue" style="width:200px;opacity:1"  id="ctlBtn"  disabled="disabled" >上传</button>
+	                <button type="button" class="btn ht-btn-gray" style="float:right;width:200px;" data-dismiss="modal">取消</button>
+	            </div>
+	        <div class="clear"></div>
+	    </div>
+	</div>    
+</div>
+{%/block%}
+{%block name="footer-script"%}
+
+
+<script src="{%$SP_URL_JS%}jquery.placeholder.min.js"></script>
+<script src="{%$SP_URL_JS%}swfupload/js/swfupload.js"></script>
+<script src="{%$SP_URL_JS%}swfupload/js/swfupload.cookie.js"></script>
+<!-- <script src="{%$SP_URL_JS%}swfupload/js/fileprogress.js"></script> -->
+<script type="text/javascript">
+	var SP_URL_HOME = '{%$SP_URL_HOME%}',SP_SSION = '{%session_id()%}';
+</script>
+<script src="{%$SP_URL_STO%}js/attendee.js"></script>
+<!-- 本页 js -->
+{%/block%}

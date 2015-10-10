@@ -1,0 +1,60 @@
+{%extends file="../layout.html"%} 
+{%block name="title" append%}
+验证成功
+{%/block%}
+
+{%block name="header-css"%}
+<link rel="stylesheet" href="{%$SP_URL_CSS%}notify.css"  />
+<link href="{%$SP_URL_CSS%}account.css" rel="stylesheet" />
+<!--[if lte IE 7]>
+	<link rel="stylesheet" type="text/css" href="{%$SP_URL_CSS%}ie.css">
+<![endif]-->
+<link rel="stylesheet" href="{%$SP_URL_CSS%}bootstrap-select.min.css">
+{%/block%}
+{%block name="header-script" %}
+<script src="{%$SP_URL_STO%}js/common.js"></script>
+<script>
+var SP_URL_UPLOAD = '{%$SP_URL_UPLOAD%}';
+var SP_POLICY = "{%$uploadInfo.policy%}", SP_SIGNATURE = "{%$uploadInfo.sign%}";
+</script>
+<script src="{%$SP_URL_JS%}bootstrap.min.js"></script>
+<script type="text/javascript" src="{%$SP_URL_JS%}bootstrap-select.min.js"></script>
+<script src="{%$SP_URL_STO%}vendor/notify/notify.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#gotoInfo").click(function(){
+            window.location.href="/account/index.html";
+        })
+        $("#myActive").click(function(){
+            window.location.href="/active/index.html";
+        })
+    })
+</script>
+{%/block%}
+
+{%block name="page-content" %}
+<div class="ht-user-path">&nbsp;&lt;&nbsp;<a href="/active/index.html">返回我的活动</a></div>
+<div class="ht-account">
+	<div class="ht-account-left ht-pull-left">
+	{%include file="./nav.html"%}
+	</div>
+	<div class="ht-account-right ht-pull-left">
+		<div class="ht-account-right-wrapper">
+			<div class="ht-account-form" style="border-top:none;">
+                <div class="congratulations">
+                    恭喜您！邮件验证成功
+                </div>
+                <div style="text-align: center;padding-top:60px;">
+                    <button type="button" class="ht-account-button-save" id="gotoInfo">个人信息</button>
+                    <button type="button" class="ht-account-button-save" id="myActive" style="background-color:#11c3ee">我的活动</button>
+                </div>
+			</div>
+		</div>
+	</div><div class="ht-clearL"></div>
+</div>
+
+{%/block%}
+{%block name="footer-script"%}
+
+<script src="{%$SP_URL_STO%}modules/account/index.js"></script>
+{%/block%}

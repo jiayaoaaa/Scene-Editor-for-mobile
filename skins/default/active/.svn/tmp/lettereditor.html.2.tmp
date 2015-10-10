@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>邀请函制作</title>
+<link rel="stylesheet" href="{%$SP_URL_HOME%}css/editor.css">
+<link rel="stylesheet" href="{%$SP_URL_HOME%}css/animate.lib.css"> 
+<script>
+<<<<<<< .mine
+var SP_URL_STO = '{%$SP_URL_HOME%}'
+var SP_LETTER_ID = '{%$id%}'
+</script>
+<script src="{%$SP_URL_HOME%}vendor/require/require.js" data-main="{%$SP_URL_HOME%}editor.js"></script>
+</head>
+<body>
+  
+=======
+var SP_URL_STO = '{%$SP_URL_HOME%}',SP_LETTER_ID = '{%$id%}';
+var SP_LETTER_JSON = '{%$letterjson%}';
+>>>>>>> .r851
+
+
+<div  ms-controller="root"> 
+
+          <div class="container-fluid">
+
+        <button  class="btn btn-default" ms-click="baseSetting">基本设置</button>
+            <button ms-click="saveAll" class="btn btn-default">保存</button>
+
+  </div><!-- /.container-fluid -->
+  <hr>
+
+<div class="editor-content">
+
+
+    <div id="pageTree" ms-controller="pageTree">
+        <ul>
+            <li ms-repeat="ThePageItemData"  ms-class="active:curPageIndex==$index">
+                <span class="up"></span>
+                <span class="down"></span>
+                <span class="close"  ms-click="remove($index)"></span>
+                <span class="pageNum">{{$index}}</span>
+                <div class="inner" ms-click="showpage($index)">
+                   
+                </div>
+            </li>
+        </ul>
+        <div id="add">
+            <button class="btn btn-success btn-block" ms-click="addPage">+ 增加一页</button>
+        </div>
+    </div>
+    <div id="editorContent"  ms-controller="editor">
+
+        <div id="toolbar">
+            <button class="btn  btn-default btn-small" ms-attr-disabled="haspage" ms-click="insertSingleTxt">插入文字</button>
+            <button class="btn btn-mini btn-default" ms-attr-disabled="haspage"  ms-click="insertSingleImage" >插入图片</button>
+            <button class="btn btn-mini btn-default" ms-attr-disabled="haspage" ms-click="insertForm" >报名表单</button>
+
+        </div>
+        <div id="editor">
+<div id="editorFrame" class="m-editor"  ms-css-background-color="curPage.pagebgColor">
+                <div class="elements" ms-repeat-elment="curPage.comInsList" ms-css-left="{{elment.left}}px" ms-css-top="{{elment.top}}px" ms-css-width="{{elment.width}}px" ms-css-height="{{elment.height}}px" 
+                ms-css-animation="{{elment.animationName}} {{elment.animationDuration}}s ease {{elment.animationDelay}}s none" ms-css-opacity="{{elment.opacity/100}}"  ms-css-background-color="{{elment.backgroundColor}}"   ms-resizable="editor" ms-class="selected:selectedIndex==$index" ms-mousedown="chooseElements($index,$event)">
+                    <img class="singleimg" ms-if="elment.type=='image'" ms-src="elment.content" />
+                    <div ms-if="elment.type=='text'" class="singletxt" 
+                    ms-css-font-size="{{elment.fontSize}}" 
+                    ms-css-color="{{elment.fontColor}}" 
+                    ms-css-line-height="{{elment.lineHeight}}"  
+                    ms-css-text-align="{{elment.textAlign}}" 
+                    >
+                       {{elment.content}}
+                    </div>
+
+                     <div ms-if="elment.type=='form'" class="singleform" >
+
+                      <div class="form-group "  ms-each="elment.formElment">
+                      
+             <div class="clearfix form-line">
+{{el.label}}
+              <input ms-if="el.type=='text'" ms-attr-name="filed{{$index}}" ms-attr-type="{{el.type}}" ms-attr-placeholder="{{el.label}}"  >
+
+          <label ms-if="el.type=='radio'" ><input  ms-attr-name="{{el.radioname}}" ms-attr-type="{{el.type}}"  > {{el.text1}}</label> 
+          <label ms-if="el.type=='radio'" ><input  ms-attr-name="{{el.radioname}}" ms-attr-type="{{el.type}}"  > {{el.text2}}</label> 
+                       </div> 
+
+                      </div>
+                       <button>提交</button>
+
+
+                    </div> 
+
+
+
+                </div>
+           <ul class="u-Layer-ctrl" ms-if="ctrl.isShowLayerCtrl" ms-css-top="ctrl.layerTop" ms-css-left="ctrl.layerLeft">
+                     <!--      <li ms-on-mousedown="toUpLayer($event)" ms-class="disable: ctrl.isTopLayer">上移一层</li>
+                           <li ms-on-mousedown="toDownLayer($event)" ms-class="disable: ctrl.isBottomLayer">下移一层</li>
+                           <li ms-on-mousedown="toTopLayer($event)" ms-class="disable: ctrl.isTopLayer">移到最顶层</li>
+                            <li ms-on-mousedown="toBottomLayer($event)" ms-class="disable: ctrl.isBottomLayer">移到最底层</li> -->
+                            <li class="last" ms-on-mousedown="deleteComponent($event)">删除</li>
+           </ul>
+            </div>
+        </div>
+    </div>
+    <div id="sidebar">
+        <div ms-include-src="mainconfigSrc"></div>
+        <div ms-include-src="consconfigSrc"></div>
+        <div ms-include-src="pageconfigSrc"></div>
+
+    </div>
+</div>
+
+
+<!--insertImage-->
+
+
+  <!--     <form action="/lettermaterial/upload.json?type=music" class="dropzone" id="insertImage" >
+    <div class="dz-default dz-message"><h4>+ 点击或拖拽图片到此区域</h4></div>
+
+       </form>
+ -->
+
+
+<div id="insertImageTpl" style="display:none">
+<div class="dz-preview dz-file-preview">
+
+    <img data-dz-thumbnail />
+
+    <div class="action">
+     <a   class="inset-btn" >插入</a>
+    <a  data-dz-remove >删除</a>
+    </div>
+
+
+  </div>
+
+  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+</div>
+</div>
+
+<!--/insertImage-->
+
+
+
+
+
+</div>
+
+<!--template-->
+
+<div id="tplForUploadImage" style="display:none">
+    <div class="dz-image-preview">
+      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+
+      <div class="dz-error-message"><span data-dz-errormessage></span></div>
+    </div>
+</div>
+
+<!--/template-->
+
+
+</body>
+</html>
+
+
+
+
+

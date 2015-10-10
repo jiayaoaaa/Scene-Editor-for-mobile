@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+
+    # Make sure directory listing is disabled
+	Options +FollowSymLinks -Indexes
+	RewriteEngine on
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	<IfModule mod_php5.c>
+	#RewriteRule ^(.*)$ index.php [L]
+		
+		RewriteRule ^([a-z][a-zA-Z0-9]+)/([a-zA-Z0-9]+)\.(json|html|xml)(\?(.+))?$ index.php?_mod=$1/$2&format=$3$5 [QSA]
+	</IfModule>
+
+	<IfModule !mod_php5.c>
+		RewriteRule ^([a-z][a-zA-Z0-9]+)/([a-zA-Z0-9]+)\.(json|html|xml)(\?(.+))?$ index.php?_mod=$1/$2&format=$3$5 [QSA]
+	</IfModule>
+
+
+</IfModule>
